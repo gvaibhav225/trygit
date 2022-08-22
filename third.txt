@@ -9,3 +9,13 @@ git pull
 then open that local file do changes
 then 3-6 steps
 
+there also we added fourth in registration and it is not present in main and for this 
+git branch registrationfunc 
+git branch
+git checkout registrationfunc
+then make a file in local
+then 3-6 steps
+then git pust --set-upstream origin registrationfunc
+
+
+the above things are entered in gitbash (user/gvaib/test/trygit) -> right click-> git bash
