@@ -1,1 +1,6 @@
 abra ka dabra
+git clone link
+git status
+(git add .)
+git commit -m "comment like third added"
+git push
