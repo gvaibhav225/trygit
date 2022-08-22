@@ -4,3 +4,8 @@ git status
 (git add .)
 git commit -m "comment like third added"
 git push
+when other modified here and you want to push your local changes then first 
+git pull
+then open that local file do changes
+then 3-6 steps
+
