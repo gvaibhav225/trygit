@@ -2,7 +2,9 @@ package com.example.OnlineJobPortal.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.Entity;
 
+@Entity
 public class Job {
 	private long id;
 	private Skill skill;

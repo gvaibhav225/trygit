@@ -3,6 +3,9 @@ package com.example.OnlineJobPortal.serviceimpl;
 import com.example.OnlineJobPortal.entity.Skill;
 import com.example.OnlineJobPortal.service.ISkillService;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ISkillServiceImpl implements ISkillService {
 
 	@Override

@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Recruiter {
 	
 	private long id;

@@ -1,4 +1,5 @@
 package com.example.OnlineJobPortal.entity;
+import javax.persistence.Entity;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
