@@ -14,7 +14,7 @@
 	<name>OnlineJobPortal</name>
 	<description>Sprint-1 Project Online Job Portal</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
