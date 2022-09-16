@@ -1,5 +1,8 @@
 package com.example.OnlineJobPortal.entity;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Admin {
 	
 	private long id;

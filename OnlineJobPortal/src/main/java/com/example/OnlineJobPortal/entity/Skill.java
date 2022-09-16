@@ -1,5 +1,7 @@
 package com.example.OnlineJobPortal.entity;
+import javax.persistence.Entity;
 
+@Entity
 public class Skill {
 	
 	private long id;
