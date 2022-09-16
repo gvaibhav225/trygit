@@ -7,17 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
-
 @Entity
-
 public class Feedback implements Serializable {
-
-
 	@Id
-
-
-
 	Long id;
 	Integer ranges;
 	String comments;
