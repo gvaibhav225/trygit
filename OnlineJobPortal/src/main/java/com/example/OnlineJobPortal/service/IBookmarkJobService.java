@@ -11,5 +11,5 @@ public interface IBookmarkJobService {
 	public Bookmarkedjob bookmarkedjob(Job job,Freelancer freelancer);
 	public void removeBookmark(Job job,Freelancer freelancer);
 	public List<Bookmarkedjob> findBookmarkedJobsBySkill(Skill skill,Freelancer freelancer);
-	public Bookmarkedjob findById(long id);
+	public Bookmarkedjob findById(int id);
 }

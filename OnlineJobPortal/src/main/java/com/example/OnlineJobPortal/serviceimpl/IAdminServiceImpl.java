@@ -21,7 +21,7 @@ public class IAdminServiceImpl implements IAdminService{
 	}
 
 	@Override
-	public Admin findById(long id) {
+	public Admin findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

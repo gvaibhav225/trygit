@@ -11,5 +11,5 @@ public interface IBookmarkFreelancerService {
 	public BookmarkedFreelancer bookmarkfreelancer(Freelancer freelancer,Skill skill,Recruiter recruiter);
 	public List<BookmarkedFreelancer> findBookmarkedFreelancer(Freelancer freelancer,Skill skill,Recruiter recruiter);
 	public void removeBookmarkedFreelancer(Freelancer freelancer,Skill skill,Recruiter recruiter);
-	public BookmarkedFreelancer findById(long id);
+	public BookmarkedFreelancer findById(int id);
 }

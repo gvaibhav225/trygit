@@ -1,9 +1,15 @@
 package com.example.OnlineJobPortal.service;
 
+import java.util.Optional;
+
+import com.example.OnlineJobPortal.Dto.RecruiterDto;
+import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
+import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
+import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
 import com.example.OnlineJobPortal.entity.Recruiter;
 
 public interface IRecruiterService {
-	public Recruiter save(Recruiter recruiter);
-	public Recruiter findById(long id);
-	public Recruiter update(Recruiter recruiter);
+	public Recruiter save(RecruiterDto recruiterdto) throws FreelancerAlreadyExistsException;
+	public Optional<Recruiter> findById(int id) throws FreelancerDoesNotExistsException;
+	public Recruiter update(RecruiterDto recruiterdto, int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException;
 }

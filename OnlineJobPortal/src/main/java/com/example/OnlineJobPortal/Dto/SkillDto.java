@@ -1,4 +1,4 @@
-package com.example.OnlineJobPortal.entity;
+package com.example.OnlineJobPortal.Dto;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,16 +7,16 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Skill {
+public class SkillDto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="skill_id")
 	private int id;
 	
-
+	@NotEmpty(message="name cant be empty")
 	private String name;
 	
-	
+	@NotEmpty(message="Desciption cant be empty")
 	private String description;
 
 	public int getId() {
@@ -43,14 +43,15 @@ public class Skill {
 		this.description = description;
 	}
 
-	public Skill(int id, String name,String description) {
+	public SkillDto(int id, @NotEmpty(message = "name cant be empty") String name,
+			@NotEmpty(message = "Desciption cant be empty") String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
 
-	public Skill() {
+	public SkillDto() {
 		super();
 	}
 	

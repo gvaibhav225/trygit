@@ -33,7 +33,7 @@ public class IBookmarkFreelancerServiceImpl implements IBookmarkFreelancerServic
 	}
 
 	@Override
-	public BookmarkedFreelancer findById(long id) {
+	public BookmarkedFreelancer findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

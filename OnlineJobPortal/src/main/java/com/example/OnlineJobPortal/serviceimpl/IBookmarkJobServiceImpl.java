@@ -32,7 +32,7 @@ public class IBookmarkJobServiceImpl implements IBookmarkJobService {
 	}
 
 	@Override
-	public Bookmarkedjob findById(long id) {
+	public Bookmarkedjob findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

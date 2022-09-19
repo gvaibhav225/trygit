@@ -5,5 +5,5 @@ import com.example.OnlineJobPortal.entity.Admin;
 public interface IAdminService {
 	public Admin save(Admin admin);
 	public Admin update(Admin admin);
-	public Admin findById(long id);
+	public Admin findById(int id);
 }
