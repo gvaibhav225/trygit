@@ -1,6 +1,8 @@
 package com.example.OnlineJobPortal.entity;
 
 import java.io.Serializable;
+import java.util.Optional;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -73,12 +75,12 @@ public class Feedback implements Serializable {
 		this.comments = comments;
 	}
 
-	public void setCreatedBy(Recruiter createdBy) {
-		this.createdBy = createdBy;
+	public void setCreatedBy(Optional<Recruiter> recruiter) {
+		this.createdBy = recruiter;
 	}
 
-	public void setCreatedFor(Freelancer createdFor) {
-		this.createdFor = createdFor;
+	public void setCreatedFor(Optional<Freelancer> freelancer) {
+		this.createdFor = freelancer;
 	}
 
 	public void setId(Long id) {

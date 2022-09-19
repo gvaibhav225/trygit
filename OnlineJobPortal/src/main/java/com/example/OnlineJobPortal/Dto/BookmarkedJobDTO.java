@@ -4,19 +4,21 @@ import javax.validation.constraints.NotNull;
 
 public class BookmarkedJobDTO {
 	@NotNull(message = "Skill_id cannot be null")
-	private Long skillId;
+	private Integer skillId;
 
 	@NotNull(message = "freelancer_id cannot be null")
-	private Long freelancerId;
+	private Integer freelancerId;
 
 	@NotNull(message = "job_id cannot be null")
-	private Long jobId;
+	private Integer jobId;
 
 	public BookmarkedJobDTO() {
 		super();
 	}
 
-	public BookmarkedJobDTO(Long skillId, Long freelancerId, Long jobId) {
+	public BookmarkedJobDTO(@NotNull(message = "Skill_id cannot be null") Integer skillId,
+			@NotNull(message = "freelancer_id cannot be null") Integer freelancerId,
+			@NotNull(message = "job_id cannot be null") Integer jobId) {
 		super();
 		this.skillId = skillId;
 		this.freelancerId = freelancerId;
@@ -35,15 +37,15 @@ public class BookmarkedJobDTO {
 		return skillId;
 	}
 
-	public void setFreelancerId(Long freelancerId) {
+	public void setFreelancerId(@NotNull(message = "freelancer_id cannot be null") Integer freelancerId) {
 		this.freelancerId = freelancerId;
 	}
 
-	public void setJobId(Long jobId) {
+	public void setJobId(@NotNull(message = "job_id cannot be null") Integer jobId) {
 		this.jobId = jobId;
 	}
 
-	public void setSkillId(Long skillId) {
+	public void setSkillId(@NotNull(message = "Skill_id cannot be null") Integer skillId) {
 		this.skillId = skillId;
 	}
 

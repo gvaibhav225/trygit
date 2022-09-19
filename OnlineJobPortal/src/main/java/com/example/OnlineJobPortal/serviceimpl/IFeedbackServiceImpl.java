@@ -1,6 +1,7 @@
 package com.example.OnlineJobPortal.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,8 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 		if (recruiterDao.existsById((int) feedbackDto.getRecruiterdtoid())
 				&& freelancerDao.existsById((int) feedbackDto.getFreelancerdtoid())) {
 
-			Recruiter recruiter = recruiterDao.findByUserName(feedbackDto.getRecruiterUName());
-			Freelancer freelancer = freelancerDao.findByUserName(feedbackDto.getFreelancerUName());
+			Optional<Recruiter> recruiter = recruiterDao.findById((int) feedbackDto.getRecruiterdtoid());
+			Optional<Freelancer> freelancer = freelancerDao.findById((int) feedbackDto.getFreelancerdtoid());
 			Feedback feedback = new Feedback();
 
 			feedback.setComment(feedbackDto.getComments());
