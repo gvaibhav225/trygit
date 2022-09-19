@@ -1,6 +1,8 @@
 package com.example.OnlineJobPortal.Dto;
 
 public class FeedbackDTO {
+	private int recruiterdtoid;
+	private int Freelancerdtoid;
 	private Integer ranges;
 	private String comments;
 	private String recruiterUName;
@@ -55,6 +57,14 @@ public class FeedbackDTO {
 		return "FeedbackDTO [ranges=" + ranges + ", comments=" + comments + ", recruiterUName=" + recruiterUName
 				+ ", freelancerUName=" + freelancerUName + "]";
 	}
+
+    public int getRecruiterdtoid() {
+        return recruiterdtoid;
+    }
+
+    public int getFreelancerdtoid() {
+        return Freelancerdtoid;
+    }
 	
 
 }

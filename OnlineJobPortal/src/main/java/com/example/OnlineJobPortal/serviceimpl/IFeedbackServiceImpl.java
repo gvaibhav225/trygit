@@ -39,8 +39,8 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 	@Override
 	public Feedback addFeedback(FeedbackDTO feedbackDto) {
 		System.out.println(feedbackDto.toString());
-		if (recruiterDao.existsByUserName(feedbackDto.getRecruiterUName())
-				&& freelancerDao.existsByUserName(feedbackDto.getFreelancerUName())) {
+		if (recruiterDao.existsById((int) feedbackDto.getRecruiterdtoid())
+				&& freelancerDao.existsById((int) feedbackDto.getFreelancerdtoid())) {
 
 			Recruiter recruiter = recruiterDao.findByUserName(feedbackDto.getRecruiterUName());
 			Freelancer freelancer = freelancerDao.findByUserName(feedbackDto.getFreelancerUName());

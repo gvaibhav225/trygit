@@ -23,15 +23,15 @@ public class BookmarkedJobDTO {
 		this.jobId = jobId;
 	}
 
-	public Long getFreelancerId() {
+	public Integer getFreelancerId() {
 		return freelancerId;
 	}
 
-	public Long getJobId() {
+	public Integer getJobId() {
 		return jobId;
 	}
 
-	public Long getSkillId() {
+	public Integer getSkillId() {
 		return skillId;
 	}
 
