@@ -13,7 +13,7 @@ import com.example.OnlineJobPortal.entity.Feedback;
 @Repository
 public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 	@Query("select new "
-			+ "com.cg.freelanceapp.dto.FeedbackListDTO(fb.id, "
+			+ "com.example.OnlineJobPortal.Dto.FeedbackListDTO(fb.id, "
 			+ "fb.createdFor.id, "
 			+ "CONCAT(fb.createdFor.firstName, ' ', fb.createdFor.lastName) as freelancerName, "
 			+ "fb.createdFor.userName, "

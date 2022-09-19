@@ -1,7 +1,6 @@
 package com.example.OnlineJobPortal.Exception;
 
 public class InvalidFeedbackException extends RuntimeException {
-	private static final long serialVersionUID = 45059082327295909L;
 
 	public InvalidFeedbackException() {
 		super();

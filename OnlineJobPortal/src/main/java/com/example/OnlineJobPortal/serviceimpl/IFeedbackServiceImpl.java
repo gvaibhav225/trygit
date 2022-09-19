@@ -20,19 +20,20 @@ import com.example.OnlineJobPortal.service.IFeedbackService;
 public class IFeedbackServiceImpl implements IFeedbackService {
 
 	@Autowired
-	IFeedbackDao feedbackDao;
+	FeedbackRepository feedbackDao;
 
 	@Autowired
-	IRecruiterDao recruiterDao;
+	RecruiterRepository recruiterDao;
 
 	@Autowired
-	IFreelancerDao freelancerDao;
+	FreelancerRepository freelancerDao;
 
 	@Override
 	public Float averageRating(String id) {
 		if (freelancerDao.existsByUserName(id)) {
 			return feedbackDao.averageRatings(id);
-		}else throw new InvalidFeedbackException();
+		} else
+			throw new InvalidFeedbackException();
 	}
 
 	@Override
@@ -40,7 +41,7 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 		System.out.println(feedbackDto.toString());
 		if (recruiterDao.existsByUserName(feedbackDto.getRecruiterUName())
 				&& freelancerDao.existsByUserName(feedbackDto.getFreelancerUName())) {
-			
+
 			Recruiter recruiter = recruiterDao.findByUserName(feedbackDto.getRecruiterUName());
 			Freelancer freelancer = freelancerDao.findByUserName(feedbackDto.getFreelancerUName());
 			Feedback feedback = new Feedback();

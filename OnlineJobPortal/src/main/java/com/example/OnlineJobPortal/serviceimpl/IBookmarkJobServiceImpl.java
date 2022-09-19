@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.OnlineJobPortal.repository.BookmarkedJobRepository;
-import com.example.OnlineJobPortal.repository.IFreelancerDao;
-import com.example.OnlineJobPortal.repository.IJobDao;
-import com.example.OnlineJobPortal.repository.ISkillDao;
-import com.example.OnlineJobPortal.dto.BookmarkedJobDTO;
-import com.example.OnlineJobPortal.dto.BookmarkedJobListDTO;
+import com.example.OnlineJobPortal.repository.FreelancerRepository;
+import com.example.OnlineJobPortal.repository.JobRepository;
+import com.example.OnlineJobPortal.repository.SkillRepository;
+import com.example.OnlineJobPortal.Dto.BookmarkedJobDTO;
+import com.example.OnlineJobPortal.Dto.BookmarkedJobListDTO;
 import com.example.OnlineJobPortal.entity.BookmarkedJob;
 import com.example.OnlineJobPortal.entity.Skill;
 import com.example.OnlineJobPortal.Exception.InvalidBookmarkedJobException;
@@ -19,27 +19,18 @@ import com.example.OnlineJobPortal.service.IBookmarkedJobService;
 
 
 @Service
-public class BookmarkedJobServiceImpl implements IBookmarkedJobService {
+public class IBookmarkJobServiceImpl implements IBookmarkedJobService {
 	@Autowired
 	BookmarkedJobRepository bookmarkedjobdao;
 	@Autowired
-	ISkillDao skilldao;
+	SkillRepository skilldao;
 	@Autowired
-	IFreelancerDao freelancerdao;
+	FreelancerRepository freelancerdao;
 	@Autowired
-	IJobDao jobdao;
+	JobRepository jobdao;
 	
 	
-	/**
-	 * 
-	 * Method     : bookmarkedJob
-	 * @param       bookmarkedjobdto
-	 * @throws      InvalidBookmarkedJobException
-	 * @return      BookmarkedJob object
-	 * Description: The method saves the bookmarkedjob object.
-	 * 
-	 */
-	
+
 	@Transactional
 	public BookmarkedJob bookmarkJob(BookmarkedJobDTO bookmarkedjobdto) 
 	{
@@ -60,15 +51,7 @@ public class BookmarkedJobServiceImpl implements IBookmarkedJobService {
 			throw new InvalidBookmarkedJobException();
 		}
 	}
-	/**
-	 * 
-	 * Method     : findBookmarkedJobsBySkillName
-	 * @param       name
-	 * @throws      InvalidBookmarkedJobException
-	 * @return      List of BookmarkedJob
-	 * Description: The method finds BookmarkedJob by Skill name, and returns a list.
-	 * 
-	 */
+
 	@Override
 	@Transactional
 	public List<BookmarkedJob> findBookmarkedJobsBySkillName(String name) {
@@ -78,16 +61,6 @@ public class BookmarkedJobServiceImpl implements IBookmarkedJobService {
 		}else throw new InvalidBookmarkedJobException();
 	}
 	
-	/**
-	 * 
-	 * Method     : findById
-	 * @param       id
-	 * @throws      InvalidBookmarkedJobException
-	 * @return      BookmarkedJob object
-	 * Description: The method finds BookmarkedJob by their Id, and returns a list.
-	 * 
-	 */
-
 	@Transactional
 	@Override
 	public BookmarkedJob findById(Long id) {
@@ -102,24 +75,10 @@ public class BookmarkedJobServiceImpl implements IBookmarkedJobService {
 		}
 	}
 
-	/*******************************************************************************************
-	 * Method:      getCurrentSeriesId
-	 * @param       none
-	 * @return      Long
-	 * Description: This method returns the current value of primary key from the sequence.
-	 *******************************************************************************************/
 	@Override
 	public Long getCurrentId() {
 		return bookmarkedjobdao.getCurrentSeriesId();
 	}
-	/**
-	 * 
-	 * Method     : remove
-	 * @param       id
-	 * @throws      InvalidBookmarkedJobException
-	 * Description: The method finds BookmarkedJob by their Id, and remove it from the list.
-	 * 
-	 */
 	
 	@Transactional
 	public void remove(Long BId)
