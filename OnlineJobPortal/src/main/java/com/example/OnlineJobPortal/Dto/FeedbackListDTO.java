@@ -1,4 +1,4 @@
-package com.cg.freelanceapp.dto;
+package com.example.OnlineJobPortal.Dto;
 
 public class FeedbackListDTO {
 	private Long id;
