@@ -5,24 +5,44 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.OnlineJobPortal.Dto.BookmarkedJobDTO;
-import com.example.OnlineJobPortal.Dto.BookmarkedJobListDTO;
-import com.example.OnlineJobPortal.entity.BookmarkedJob;
+import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
+import com.example.OnlineJobPortal.entity.Bookmarkedjob;
 
 
 
 @Service
 public interface IBookmarkedJobService {
 
-	BookmarkedJob bookmarkJob(BookmarkedJobDTO bjd);
-
-	List<BookmarkedJob> findBookmarkedJobsBySkillName(String name);
-
-	BookmarkedJob findById(Long id);
-	
-	List<BookmarkedJobListDTO> findAllBookmarks(Long frId);
-
-	Long getCurrentId();
-	
-	void remove(Long BId);
+public	Bookmarkedjob bookmarkJob(BookmarkedJobDTO bookmarkedjobdto) throws FreelancerAlreadyExistsException;
+public List<Bookmarkedjob> findBookmarkedJobsBySkillName(String name);
+public Bookmarkedjob findById(int id);
+void remove(int BId);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+//package com.example.OnlineJobPortal.service;
+//
+//import java.util.List;
+//
+//import com.example.OnlineJobPortal.entity.Bookmarkedjob;
+//import com.example.OnlineJobPortal.entity.Freelancer;
+//import com.example.OnlineJobPortal.entity.Job;
+//import com.example.OnlineJobPortal.entity.Skill;
+//
+//public interface IBookmarkJobService {
+//	public Bookmarkedjob bookmarkedjob(Job job,Freelancer freelancer);
+//	public void removeBookmark(Job job,Freelancer freelancer);
+//	public List<Bookmarkedjob> findBookmarkedJobsBySkill(Skill skill,Freelancer freelancer);
+//	public Bookmarkedjob findById(int id);
+//}
+

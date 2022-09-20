@@ -16,32 +16,29 @@ import com.example.OnlineJobPortal.Exception.InvalidFeedbackException;
 import com.example.OnlineJobPortal.service.IFeedbackService;
 
 @RestController
-@RequestMapping("/feedbacks")
-@CrossOrigin(origins = "*")
 public class FeedbackController {
 
     @Autowired
     IFeedbackService feedbackService;
 
-    @PostMapping("/add")
-    public ResponseEntity<Object> addFeedback(@RequestBody FeedbackDTO feedbackDto) {
-        feedbackService.addFeedback(feedbackDto);
-        return new ResponseEntity<>("Feedback Added Successfully", HttpStatus.OK);
-    }
-
+    @PostMapping("/feedbackadd")
+    public ResponseEntity<String> addFeedback(@RequestBody FeedbackDTO feedbackDto) {
+        feedbackService.createFeedback(feedbackDto);
+        return new ResponseEntity<String>("Feedback Added Successfully", HttpStatus.OK);
+    }   
+                                                      
     @GetMapping("/get/freelancer/{freelancerUId}/recruiter/{recruiterId}")
-    public ResponseEntity<Object> getFeedbackForFreelancerByRecruiter(@PathVariable String freelancerUId,
-            @PathVariable String recruiterId) {
-        try {
+    public ResponseEntity<Object> getFeedbackForFreelancerByRecruiter(@PathVariable int freelancerid) {
+        try { 
             return new ResponseEntity<>(
-                    feedbackService.findFeedbacksForFreelancerByRecruiter(freelancerUId, recruiterId), HttpStatus.OK);
+                    feedbackService.findFeedbacksByFreelancer(freelancerid), HttpStatus.OK);
         } catch (InvalidFeedbackException exception) {
             throw new InvalidFeedbackException("Freelancer with given Id not found");
         }
     }
 
-    @GetMapping("/get/avgRatingsFor/{id}")
-    public ResponseEntity<Object> getAverageRatings(@PathVariable String id) {
+    @GetMapping("/getavgRatingsFor/{id}")
+    public ResponseEntity<Object> getAverageRatings(@PathVariable int id) {
         try {
             return new ResponseEntity<>(feedbackService.averageRating(id), HttpStatus.OK);
         } catch (InvalidFeedbackException exception) {

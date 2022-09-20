@@ -21,11 +21,56 @@ public class SkillExperience {
 	
 	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	private Skill skill;
-	private int years;
+	private double years;
 	
 	@ManyToOne(targetEntity=Freelancer.class,cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name="Freelancer_id")
 	@JsonBackReference
 	private Freelancer freelance;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Skill getSkill() {
+		return skill;
+	}
+
+	public void setSkill(Skill skill) {
+		this.skill = skill;
+	}
+
+	public double getYears() {
+		return years;
+	}
+
+	public void setYears(double years) {
+		this.years = years;
+	}
+
+	public Freelancer getFreelance() {
+		return freelance;
+	}
+
+	public void setFreelance(Freelancer freelance) {
+		this.freelance = freelance;
+	}
+
+	public SkillExperience(int id, Skill skill, int years, Freelancer freelance) {
+		super();
+		this.id = id;
+		this.skill = skill;
+		this.years = years;
+		this.freelance = freelance;
+	}
+
+	public SkillExperience() {
+		super();
+	}
+	
 	
 }

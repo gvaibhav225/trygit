@@ -1,31 +1,40 @@
 package com.example.OnlineJobPortal.Dto;
 
 public class FeedbackDTO {
+	
+	
 	private int recruiterdtoid;
 	private int Freelancerdtoid;
-	private Integer ranges;
+	private Integer ratings;
 	private String comments;
-	private String recruiterUName;
-	private String freelancerUName;
+	private int feedbackdtoid;
 
 	public FeedbackDTO() {
 		super();
 	}
 
-	public FeedbackDTO(Integer ranges, String comments, String recruiterUName, String freelancerUName) {
-		super();
-		this.ranges = ranges;
-		this.comments = comments;
-		this.recruiterUName = recruiterUName;
-		this.freelancerUName = freelancerUName;
+	public int getRecruiterdtoid() {
+		return recruiterdtoid;
 	}
 
-	public Integer getRanges() {
-		return ranges;
+	public void setRecruiterdtoid(int recruiterdtoid) {
+		this.recruiterdtoid = recruiterdtoid;
 	}
 
-	public void setRanges(Integer ranges) {
-		this.ranges = ranges;
+	public int getFreelancerdtoid() {
+		return Freelancerdtoid;
+	}
+
+	public void setFreelancerdtoid(int freelancerdtoid) {
+		Freelancerdtoid = freelancerdtoid;
+	}
+
+	public Integer getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Integer ratings) {
+		this.ratings = ratings;
 	}
 
 	public String getComments() {
@@ -36,35 +45,22 @@ public class FeedbackDTO {
 		this.comments = comments;
 	}
 
-	public String getRecruiterUName() {
-		return recruiterUName;
+	public int getFeedbackdtoid() {
+		return feedbackdtoid;
 	}
 
-	public void setRecruiterUName(String recruiterUName) {
-		this.recruiterUName = recruiterUName;
+	public void setFeedbackdtoid(int feedbackdtoid) {
+		this.feedbackdtoid = feedbackdtoid;
 	}
 
-	public String getFreelancerUName() {
-		return freelancerUName;
+	public FeedbackDTO(int recruiterdtoid, int freelancerdtoid, Integer ratings, String comments, int feedbackdtoid) {
+		super();
+		this.recruiterdtoid = recruiterdtoid;
+		Freelancerdtoid = freelancerdtoid;
+		this.ratings = ratings;
+		this.comments = comments;
+		this.feedbackdtoid = feedbackdtoid;
 	}
-
-	public void setFreelancerUName(String freelancerUName) {
-		this.freelancerUName = freelancerUName;
-	}
-
-	@Override
-	public String toString() {
-		return "FeedbackDTO [ranges=" + ranges + ", comments=" + comments + ", recruiterUName=" + recruiterUName
-				+ ", freelancerUName=" + freelancerUName + "]";
-	}
-
-    public int getRecruiterdtoid() {
-        return recruiterdtoid;
-    }
-
-    public int getFreelancerdtoid() {
-        return Freelancerdtoid;
-    }
 	
-
+	
 }

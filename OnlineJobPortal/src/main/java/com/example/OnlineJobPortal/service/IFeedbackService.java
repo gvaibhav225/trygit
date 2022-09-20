@@ -5,15 +5,18 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.OnlineJobPortal.Dto.FeedbackDTO;
-import com.example.OnlineJobPortal.Dto.FeedbackListDTO;
+
 import com.example.OnlineJobPortal.entity.Feedback;
 
 @Service
 public interface IFeedbackService {
 
-	Float averageRating(String id);
+	public int averageRating(int freelancerid);
 
-	Feedback addFeedback(FeedbackDTO feedbackDto);
 
-	List<FeedbackListDTO> findFeedbacksForFreelancerByRecruiter(String fId, String rId);
+	public Feedback createFeedback(FeedbackDTO feedbackDto);
+	
+	public List<Feedback> findFeedbacksByFreelancer(int freelancerid);
+	
+
 }

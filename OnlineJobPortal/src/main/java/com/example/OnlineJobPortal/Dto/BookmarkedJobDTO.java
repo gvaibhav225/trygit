@@ -11,6 +11,16 @@ public class BookmarkedJobDTO {
 
 	@NotNull(message = "job_id cannot be null")
 	private Integer jobId;
+	
+	private Integer bookmaryjobId;
+
+	public Integer getBookmaryjobId() {
+		return bookmaryjobId;
+	}
+
+	public void setBookmaryjobId(Integer bookmaryjobId) {
+		this.bookmaryjobId = bookmaryjobId;
+	}
 
 	public BookmarkedJobDTO() {
 		super();

@@ -11,82 +11,74 @@ import com.example.OnlineJobPortal.repository.FreelancerRepository;
 import com.example.OnlineJobPortal.repository.JobRepository;
 import com.example.OnlineJobPortal.repository.SkillRepository;
 import com.example.OnlineJobPortal.Dto.BookmarkedJobDTO;
-import com.example.OnlineJobPortal.Dto.BookmarkedJobListDTO;
-import com.example.OnlineJobPortal.entity.BookmarkedJob;
+import com.example.OnlineJobPortal.entity.Bookmarkedjob;
 import com.example.OnlineJobPortal.entity.Skill;
+import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.InvalidBookmarkedJobException;
 import com.example.OnlineJobPortal.service.IBookmarkedJobService;
 
 @Service
 public class IBookmarkJobServiceImpl implements IBookmarkedJobService {
 	@Autowired
-	BookmarkedJobRepository bookmarkedjobdao;
+	BookmarkedJobRepository bookmarkedjobRepo;
 	@Autowired
-	SkillRepository skilldao;
+	SkillRepository skillRepo;
 	@Autowired
-	FreelancerRepository freelancerdao;
+	FreelancerRepository freelancerRepo;
 	@Autowired
-	JobRepository jobdao;
+	JobRepository jobRepo;
 
-	@Transactional
-	public BookmarkedJob bookmarkJob(BookmarkedJobDTO bookmarkedjobdto) {
-		BookmarkedJob bookmarkedJob = new BookmarkedJob();
+	@Override
+	public Bookmarkedjob bookmarkJob(BookmarkedJobDTO bookmarkedjobdto) throws FreelancerAlreadyExistsException {
+		Bookmarkedjob bookmarkedJob = new Bookmarkedjob();
 
-		if (jobdao.existsById(bookmarkedjobdto.getJobId()) &&
-				freelancerdao.existsById(bookmarkedjobdto.getFreelancerId()) &&
-				skilldao.existsById(bookmarkedjobdto.getSkillId())) {
-			bookmarkedJob.setSkill(skilldao.findById(bookmarkedjobdto.getSkillId()).get());
-			bookmarkedJob.setFreelancer(freelancerdao.findById(bookmarkedjobdto.getFreelancerId()).get());
-			bookmarkedJob.setJob(jobdao.findById(bookmarkedjobdto.getJobId()).get());
-
-			return bookmarkedjobdao.save(bookmarkedJob);
+		if(bookmarkedjobRepo.existsById(bookmarkedjobdto.getBookmaryjobId())) {
+			throw new FreelancerAlreadyExistsException();
 		}
-
+		
+		if (jobRepo.existsById(bookmarkedjobdto.getJobId()) &&
+				freelancerRepo.existsById(bookmarkedjobdto.getFreelancerId()) &&
+				skillRepo.existsById(bookmarkedjobdto.getSkillId())) {
+			bookmarkedJob.setSkill(skillRepo.findById(bookmarkedjobdto.getSkillId()).get());
+			bookmarkedJob.setFreelance(freelancerRepo.findById(bookmarkedjobdto.getFreelancerId()).get());
+			bookmarkedJob.setJob(jobRepo.findById(bookmarkedjobdto.getJobId()).get());
+			bookmarkedJob.setId(bookmarkedjobdto.getBookmaryjobId());
+			return bookmarkedjobRepo.save(bookmarkedJob);
+		}
 		else {
 			throw new InvalidBookmarkedJobException();
 		}
 	}
 
 	@Override
-	@Transactional
-	public List<BookmarkedJob> findBookmarkedJobsBySkillName(String name) {
-		if (skilldao.existsByName(name)) {
-			Skill skill = skilldao.findByName(name);
-			return bookmarkedjobdao.findBookmarkedJobBySkill(skill);
-		} else
+	public List<Bookmarkedjob> findBookmarkedJobsBySkillName(String name) {
+	if(skillRepo.existsByName(name)) {
+			return bookmarkedjobRepo.findBookmarkedJobsBySkillname(name);
+		} else {
 			throw new InvalidBookmarkedJobException();
 	}
+	}
 
-	@Transactional
 	@Override
-	public BookmarkedJob findById(Long id) {
-		if (bookmarkedjobdao.existsById(id)) {
+	public Bookmarkedjob findById(int id) {
+		if (bookmarkedjobRepo.existsById(id)) {
 
-			return bookmarkedjobdao.findById(id).get();
+			return bookmarkedjobRepo.findById(id).get();
 		} else {
 			throw new InvalidBookmarkedJobException();
 		}
 	}
 
+
 	@Override
-	public Long getCurrentId() {
-		return bookmarkedjobdao.getCurrentSeriesId();
-	}
+	public void remove(int BId) {
+		if (bookmarkedjobRepo.existsById(BId)) {
 
-	@Transactional
-	public void remove(Long BId) {
-		if (bookmarkedjobdao.existsById(BId)) {
-
-			BookmarkedJob bj = bookmarkedjobdao.findById(BId).get();
-			bookmarkedjobdao.delete(bj);
+			bookmarkedjobRepo.deleteById(BId);
 		} else {
 			throw new InvalidBookmarkedJobException();
 		}
 	}
 
-	@Override
-	public List<BookmarkedJobListDTO> findAllBookmarks(Long frId) {
-		return bookmarkedjobdao.findAllBookmarks(frId);
-	}
 
 }

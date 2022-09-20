@@ -1,8 +1,4 @@
 package com.example.OnlineJobPortal.entity;
-
-import java.io.Serializable;
-import java.util.Optional;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,84 +7,94 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Feedback implements Serializable {
+public class Feedback {
+	
 	@Id
-	@Column(name = "feedback_id", updatable = false, nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "feedback_seq")
-	@SequenceGenerator(name = "feedback_seq", sequenceName = "feedback_seq", allocationSize = 1)
-	Long id;
-	Integer ranges;
-	String comments;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="feedback_id")
+	private int id;
+	private int rating;
+	private String comment;
+	
+	@ManyToOne(targetEntity=Recruiter.class,cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinColumn(name="recruiter_id")
+	@JsonBackReference
+	private Recruiter createdBy;
+	
+	
+	@ManyToOne(targetEntity=Freelancer.class,cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinColumn(name="Freelancer_id")
+	@JsonBackReference
+	private Freelancer createdFor;
 
-	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Recruiter.class)
-	@JoinColumn(name = "recruiter_id")
-	Recruiter createdBy;
 
-	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Freelancer.class)
-	@JoinColumn(name = "freelancer_id")
-	Freelancer createdFor;
-
-	public Feedback() {
-		super();
+	public int getId() {
+		return id;
 	}
 
-	public Feedback(Integer ranges, String comments, Recruiter createdBy, Freelancer createdFor) {
-		super();
-		this.ranges = ranges;
-		this.comments = comments;
-		this.createdBy = createdBy;
-		this.createdFor = createdFor;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setComments(String comments) {
-		this.comments = comments;
+
+	public int getRating() {
+		return rating;
 	}
 
-	public String getComments() {
-		return comments;
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
+
+
+	public String getComment() {
+		return comment;
+	}
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 
 	public Recruiter getCreatedBy() {
 		return createdBy;
 	}
 
+
+	public void setCreatedBy(Recruiter createdBy) {
+		this.createdBy = createdBy;
+	}
+
+
 	public Freelancer getCreatedFor() {
 		return createdFor;
 	}
 
-	public Long getId() {
-		return id;
+
+	public void setCreatedFor(Freelancer createdFor) {
+		this.createdFor = createdFor;
 	}
 
-	public Integer getRanges() {
-		return ranges;
-	}
 
-	public void setComment(String comments) {
-		this.comments = comments;
-	}
-
-	public void setCreatedBy(Optional<Recruiter> recruiter) {
-		this.createdBy = recruiter;
-	}
-
-	public void setCreatedFor(Optional<Freelancer> freelancer) {
-		this.createdFor = freelancer;
-	}
-
-	public void setId(Long id) {
+	public Feedback(int id, int rating, String comment, Recruiter createdBy, Freelancer createdFor) {
+		super();
 		this.id = id;
+		this.rating = rating;
+		this.comment = comment;
+		this.createdBy = createdBy;
+		this.createdFor = createdFor;
 	}
 
-	public void setRanges(Integer ranges) {
-		this.ranges = ranges;
-	}
 
+	public Feedback() {
+		super();
+	}
+	
+	
 }

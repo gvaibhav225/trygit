@@ -20,9 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.OnlineJobPortal.Dto.BookmarkedJobDTO;
-import com.example.OnlineJobPortal.entity.BookmarkedJob;
+import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.InvalidBookmarkedJobException;
 import com.example.OnlineJobPortal.Exception.JobPortalValidationException;
+import com.example.OnlineJobPortal.entity.Bookmarkedjob;
 import com.example.OnlineJobPortal.service.IBookmarkedJobService;
 
 @RestController
@@ -32,18 +33,11 @@ public class BookmarkedJobController {
 	@Autowired
 	IBookmarkedJobService bookmarkedJobService;
 
-	@PostMapping("/add")
-	public ResponseEntity<Object> createBookmark(@Valid @RequestBody BookmarkedJobDTO bookmarkedjobdto,
-			BindingResult bindingResult) {
+	@PostMapping("/bookmarkedjobadd")
+	public ResponseEntity<String> createBookmark(@Valid @RequestBody BookmarkedJobDTO bookmarkedjobdto,
+			BindingResult bindingResult) throws FreelancerAlreadyExistsException {
 		if (bindingResult.hasErrors()) {
-			System.out.println("Some errors exist!");
-			List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-
-			List<String> errMessages = new ArrayList<>();
-			for (FieldError fe : fieldErrors) {
-				errMessages.add(fe.getDefaultMessage());
-			}
-			throw new JobPortalValidationException(errMessages);
+			return new ResponseEntity<String>("some error occured", HttpStatus.BAD_REQUEST);
 		}
 		try {
 			bookmarkedJobService.bookmarkJob(bookmarkedjobdto);
@@ -55,8 +49,8 @@ public class BookmarkedJobController {
 	}
 
 
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Object> deleteById(@PathVariable Long id) {
+	@DeleteMapping("/bookmarkjobdelete/{id}")
+	public ResponseEntity<Object> deleteById(@PathVariable int id) {
 		try {
 			bookmarkedJobService.remove(id);
 		} catch (InvalidBookmarkedJobException exception) {
@@ -66,29 +60,25 @@ public class BookmarkedJobController {
 	}
 
 	@GetMapping("/get/id/{id}")
-	public ResponseEntity<Object> getById(@Valid @PathVariable Long id) {
+	public ResponseEntity<Object> getById(@Valid @PathVariable int id) {
 		try {
-			BookmarkedJob bookmarkedJob = bookmarkedJobService.findById(id);
+			Bookmarkedjob bookmarkedJob = bookmarkedJobService.findById(id);
 			return new ResponseEntity<>(bookmarkedJob, HttpStatus.OK);
 		} catch (InvalidBookmarkedJobException exception) {
 			throw new InvalidBookmarkedJobException("No Bookmark with specified id.");
 		}
 	}
 
-	@GetMapping("/get/skill/{skillName}")
-	public List<BookmarkedJob> listJobsBySkill(@Valid @PathVariable String skillName) {
+	@GetMapping("/bookmarkjobby/{skillName}")
+	public List<Bookmarkedjob> listJobsBySkill(@PathVariable String skillName) {
 		try {
-			List<BookmarkedJob> bookmarkedJobs = bookmarkedJobService.findBookmarkedJobsBySkillName(skillName);
+			List<Bookmarkedjob> bookmarkedJobs = bookmarkedJobService.findBookmarkedJobsBySkillName(skillName);
 			return bookmarkedJobs;
 		} catch (InvalidBookmarkedJobException exception) {
 			throw new InvalidBookmarkedJobException("No bookmarks found for the specified skill name");
 		}
 	}
 
-	@GetMapping("findAll/{frId}")
-	public ResponseEntity<Object> findAll(@PathVariable Long frId) {
-		System.out.println(frId);
-		return new ResponseEntity<>(bookmarkedJobService.findAllBookmarks(frId), HttpStatus.OK);
-	}
+	
 
 }

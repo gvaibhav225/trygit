@@ -10,7 +10,7 @@ import com.example.OnlineJobPortal.repository.FeedbackRepository;
 import com.example.OnlineJobPortal.repository.FreelancerRepository;
 import com.example.OnlineJobPortal.repository.RecruiterRepository;
 import com.example.OnlineJobPortal.Dto.FeedbackDTO;
-import com.example.OnlineJobPortal.Dto.FeedbackListDTO;
+
 import com.example.OnlineJobPortal.entity.Feedback;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.entity.Recruiter;
@@ -21,47 +21,47 @@ import com.example.OnlineJobPortal.service.IFeedbackService;
 public class IFeedbackServiceImpl implements IFeedbackService {
 
 	@Autowired
-	FeedbackRepository feedbackDao;
+	FeedbackRepository feedbackRepo;
 
 	@Autowired
-	RecruiterRepository recruiterDao;
+	RecruiterRepository recruiterRepo;
 
 	@Autowired
-	FreelancerRepository freelancerDao;
+	FreelancerRepository freeRepo;
 
 	@Override
-	public Float averageRating(String id) {
-		if (freelancerDao.existsByUserName(id)) {
-			return feedbackDao.averageRatings(id);
+	public int averageRating(int freelancerid) {
+		if (freeRepo.existsById(freelancerid)) {
+			return feedbackRepo.averageRatings(freelancerid);
 		} else
 			throw new InvalidFeedbackException();
 	}
 
 	@Override
-	public Feedback addFeedback(FeedbackDTO feedbackDto) {
-		System.out.println(feedbackDto.toString());
-		if (recruiterDao.existsById((int) feedbackDto.getRecruiterdtoid())
-				&& freelancerDao.existsById((int) feedbackDto.getFreelancerdtoid())) {
+	public Feedback createFeedback(FeedbackDTO feedbackDto) {
 
-			Optional<Recruiter> recruiter = recruiterDao.findById((int) feedbackDto.getRecruiterdtoid());
-			Optional<Freelancer> freelancer = freelancerDao.findById((int) feedbackDto.getFreelancerdtoid());
+		if (recruiterRepo.existsById( feedbackDto.getRecruiterdtoid())
+				&& freeRepo.existsById( feedbackDto.getFreelancerdtoid())) {
+
+
 			Feedback feedback = new Feedback();
 
 			feedback.setComment(feedbackDto.getComments());
-			feedback.setRanges(feedbackDto.getRanges());
-			feedback.setCreatedBy(recruiter);
-			feedback.setCreatedFor(freelancer);
+			feedback.setRating(feedbackDto.getRatings());
+			feedback.setCreatedBy(recruiterRepo.getById(feedbackDto.getRecruiterdtoid()));
+			feedback.setCreatedFor(freeRepo.getById(feedbackDto.getFreelancerdtoid()));
+			feedback.setId(feedbackDto.getFeedbackdtoid());
 
-			return feedbackDao.save(feedback);
+			return feedbackRepo.save(feedback);
 		} else
 			throw new InvalidFeedbackException();
 
 	}
 
 	@Override
-	public List<FeedbackListDTO> findFeedbacksForFreelancerByRecruiter(String fId, String rId) {
+       public List<Feedback> findFeedbacksByFreelancer(int freelancerid){
 
-		return feedbackDao.findFeedbacksForFreelancerByRecruiterId(fId, rId);
+		return feedbackRepo.findFeedbacksForFreelancer(freelancerid);
 	}
 
 }

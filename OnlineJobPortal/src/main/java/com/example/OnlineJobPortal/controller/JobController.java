@@ -1,5 +1,6 @@
 package com.example.OnlineJobPortal.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -48,12 +49,12 @@ public class JobController {
 	}
 	
 	
-//	@PutMapping("/freeupdate/{id}")
-//	public ResponseEntity<String> update(@RequestBody FreelancerDto freelancerdto,@PathVariable int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
-//
-//		Freelancer updated=freeServ.update(freelancerdto, id);
-//		return new ResponseEntity<String>("Updated", HttpStatus.CREATED);
-//	}
+	@GetMapping("/findbyskill/{name}")
+	public ResponseEntity<List<Job>> findJobsBySkill(@PathVariable String name) throws FreelancerDoesNotExistsException{
+
+		List<Job> job=jobServ.findJobsBySkill(name);
+		return new ResponseEntity<List<Job>>(job, HttpStatus.OK);
+	}
 	
 	@GetMapping("/close/{id}")
 	public ResponseEntity<String>  close(@PathVariable int id) throws FreelancerDoesNotExistsException {

@@ -15,7 +15,7 @@ import com.example.OnlineJobPortal.entity.Skill;
 public interface IJobService {
 	public Job postjob(JobDto jobdto) throws FreelancerAlreadyExistsException;
 	public Optional<Job> findById(int id) throws FreelancerDoesNotExistsException;
-	public List<Job> findJobsBySkill(Skill skill);
+	public List<Job> findJobsBySkill(String name) throws FreelancerDoesNotExistsException;
 	public void close(int id) throws FreelancerDoesNotExistsException;
 
 }

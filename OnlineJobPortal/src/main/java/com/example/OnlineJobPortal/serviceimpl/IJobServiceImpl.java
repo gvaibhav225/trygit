@@ -70,9 +70,14 @@ public class IJobServiceImpl implements IJobService {
 	}
 
 	@Override
-	public List<Job> findJobsBySkill(Skill skill) {
+	public List<Job> findJobsBySkill(String skillname) throws FreelancerDoesNotExistsException {
 		// TODO Auto-generated method stub
-		return null;
+		if(skillRepo.existsByName(skillname)) {
+			return jobRepo.findJobsBySkill(skillname);
+		}else {
+			throw new FreelancerDoesNotExistsException();
+		}
+	
 	}
 
 	@Override
