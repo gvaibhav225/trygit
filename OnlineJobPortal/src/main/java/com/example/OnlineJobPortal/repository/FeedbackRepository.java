@@ -21,4 +21,5 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
 
 	@Query("select AVG(fb.rating) from Feedback fb where fb.createdFor.id = :id")
 	public int averageRatings(@Param("id") int freelancerid);
+	
 }

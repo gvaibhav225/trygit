@@ -32,7 +32,7 @@ public class IAdminServiceImpl implements IAdminService{
 		Admin admin = new Admin();
 		admin.setId(adminDto.getId());
 		admin.setFirstName(adminDto.getFirstname());
-		admin.setLastName(adminDto.getFirstname());
+		admin.setLastName(adminDto.getLastname());
 		admin.setPassword( adminDto.getPassword());
 		
 			return adminRepo.save(admin);

@@ -34,22 +34,26 @@ public class ISkillExperienceServiceImpl implements ISkillExperienceService {
 	if(skillexRepo.existsById(skillexdto.getSkillexid())) {
 		throw new FreelancerAlreadyExistsException();
 	}
+	if(skillRepo.getByName(skillexdto.getSkillname())==null &&freeRepo.existsById(skillexdto.getFreelancerid())) {
 	SkillExperience ske=new SkillExperience();
 	ske.setFreelance(freeRepo.getById(skillexdto.getFreelancerid()));
 	ske.setId(skillexdto.getSkillexid());
 	ske.setYears(skillexdto.getYears());
 	ske.setSkill(skillRepo.getByName(skillexdto.getSkillname()));
 		return skillexRepo.save(ske);
+	}else {
+		throw new FreelancerAlreadyExistsException();
+	}
 	}
 
 	@Override
-	public SkillExperience updateSkillYears(double years, int id) {
+	public SkillExperience updateSkillYears(SkillExperienceDto skillexdto, int id) {
 		// TODO Auto-generated method stub
 		if(skillexRepo.existsById(id)) {
 			SkillExperience sk=skillexRepo.getById(id);
 			
-			if(years>=0) {
-				sk.setYears(years);
+			if(skillexdto.getYears()>=0) {
+				sk.setYears(skillexdto.getYears());
 				
 				skillexRepo.save(sk);
 			}else {

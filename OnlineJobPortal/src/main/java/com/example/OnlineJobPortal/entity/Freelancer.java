@@ -33,7 +33,7 @@ public class Freelancer {
 	
 	@OneToMany(mappedBy="freelance",targetEntity = SkillExperience.class,cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<SkillExperience> skills;
+	private List<SkillExperience> skillsexp;
 	
 	@OneToMany(mappedBy="freelance",targetEntity = Bookmarkedjob.class,cascade = CascadeType.ALL)
 	@JsonManagedReference
@@ -88,11 +88,11 @@ public class Freelancer {
 	}
 
 	public List<SkillExperience> getSkills() {
-		return skills;
+		return skillsexp;
 	}
 
-	public void setSkills(List<SkillExperience> skills) {
-		this.skills = skills;
+	public void setSkills(List<SkillExperience> skillsexp) {
+		this.skillsexp = skillsexp;
 	}
 
 	public List<Bookmarkedjob> getBookmarkedjobs() {
@@ -112,7 +112,7 @@ public class Freelancer {
 		this.password = password;
 		this.appliedJobs = appliedJobs;
 		this.feedbacks = feedbacks;
-		this.skills = skills;
+		this.skillsexp = skills;
 		this.bookmarkedjobs = bookmarkedjobs;
 	}
 

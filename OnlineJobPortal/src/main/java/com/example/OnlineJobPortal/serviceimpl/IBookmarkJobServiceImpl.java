@@ -52,10 +52,11 @@ public class IBookmarkJobServiceImpl implements IBookmarkedJobService {
 
 	@Override
 	public List<Bookmarkedjob> findBookmarkedJobsBySkillName(String name) {
-	if(skillRepo.existsByName(name)) {
-			return bookmarkedjobRepo.findBookmarkedJobsBySkillname(name);
+	if(bookmarkedjobRepo.findBookmarkedJobsBySkillname(name).isEmpty()) {
+		throw new InvalidBookmarkedJobException();
+			
 		} else {
-			throw new InvalidBookmarkedJobException();
+			return  bookmarkedjobRepo.findBookmarkedJobsBySkillname(name);
 	}
 	}
 

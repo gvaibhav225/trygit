@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.OnlineJobPortal.Dto.FeedbackDTO;
 import com.example.OnlineJobPortal.Exception.InvalidFeedbackException;
+import com.example.OnlineJobPortal.entity.Feedback;
 import com.example.OnlineJobPortal.service.IFeedbackService;
 
 @RestController
@@ -22,13 +23,13 @@ public class FeedbackController {
     IFeedbackService feedbackService;
 
     @PostMapping("/feedbackadd")
-    public ResponseEntity<String> addFeedback(@RequestBody FeedbackDTO feedbackDto) {
-        feedbackService.createFeedback(feedbackDto);
+    public ResponseEntity<String> createFeedback(@RequestBody FeedbackDTO feedbackDto) {
+       Feedback saved= feedbackService.createFeedback(feedbackDto);
         return new ResponseEntity<String>("Feedback Added Successfully", HttpStatus.OK);
     }   
                                                       
-    @GetMapping("/get/freelancer/{freelancerUId}/recruiter/{recruiterId}")
-    public ResponseEntity<Object> getFeedbackForFreelancerByRecruiter(@PathVariable int freelancerid) {
+    @GetMapping("/getbyfree/{freelancerid}")
+    public ResponseEntity<Object> getFeedbackForFreelancer(@PathVariable int freelancerid) {
         try { 
             return new ResponseEntity<>(
                     feedbackService.findFeedbacksByFreelancer(freelancerid), HttpStatus.OK);

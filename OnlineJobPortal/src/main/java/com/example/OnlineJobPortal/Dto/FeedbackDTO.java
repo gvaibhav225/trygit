@@ -5,7 +5,7 @@ public class FeedbackDTO {
 	
 	private int recruiterdtoid;
 	private int Freelancerdtoid;
-	private Integer ratings;
+	private int ratings;
 	private String comments;
 	private int feedbackdtoid;
 

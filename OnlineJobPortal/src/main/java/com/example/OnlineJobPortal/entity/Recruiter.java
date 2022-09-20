@@ -18,7 +18,6 @@ import javax.persistence.OneToMany;
 public class Recruiter {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="recruiter_id")
 	private int id;
 	private String firstName;
@@ -35,7 +34,7 @@ public class Recruiter {
 
 //	@OneToMany(mappedBy="postedBy",targetEntity = Job.class, cascade = CascadeType.ALL)
 //	private List<Job> postedJobs;
-	
+//	
 	@OneToMany(mappedBy="createdBy",targetEntity = Feedback.class, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<Feedback> Feedbacks;

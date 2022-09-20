@@ -1,4 +1,6 @@
 package com.example.OnlineJobPortal.entity;
+import java.util.Optional;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Feedback {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="feedback_id")
 	private int id;
 	private int rating;
@@ -67,8 +69,8 @@ public class Feedback {
 	}
 
 
-	public void setCreatedBy(Recruiter createdBy) {
-		this.createdBy = createdBy;
+	public void setCreatedBy(Recruiter optional) {
+		this.createdBy = optional;
 	}
 
 

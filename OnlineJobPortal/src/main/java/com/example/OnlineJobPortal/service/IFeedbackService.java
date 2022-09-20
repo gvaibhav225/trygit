@@ -8,11 +8,10 @@ import com.example.OnlineJobPortal.Dto.FeedbackDTO;
 
 import com.example.OnlineJobPortal.entity.Feedback;
 
-@Service
+
 public interface IFeedbackService {
 
 	public int averageRating(int freelancerid);
-
 
 	public Feedback createFeedback(FeedbackDTO feedbackDto);
 	

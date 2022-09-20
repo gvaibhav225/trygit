@@ -40,22 +40,23 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 	@Override
 	public Feedback createFeedback(FeedbackDTO feedbackDto) {
 
-		if (recruiterRepo.existsById( feedbackDto.getRecruiterdtoid())
-				&& freeRepo.existsById( feedbackDto.getFreelancerdtoid())) {
+//		if (recruiterRepo.existsById( feedbackDto.getRecruiterdtoid()) && freeRepo.existsById( feedbackDto.getFreelancerdtoid())  {
 
-
+      // if(recruiterRepo.existsById(feedbackDto.getRecruiterdtoid())&& freeRepo.existsById(feedbackDto.getFreelancerdtoid())) {
 			Feedback feedback = new Feedback();
 
 			feedback.setComment(feedbackDto.getComments());
 			feedback.setRating(feedbackDto.getRatings());
-			feedback.setCreatedBy(recruiterRepo.getById(feedbackDto.getRecruiterdtoid()));
-			feedback.setCreatedFor(freeRepo.getById(feedbackDto.getFreelancerdtoid()));
+			
+	        feedback.setCreatedFor(freeRepo.getById(feedbackDto.getFreelancerdtoid()));
+	        feedback.setCreatedBy(recruiterRepo.getById(feedbackDto.getRecruiterdtoid()));
 			feedback.setId(feedbackDto.getFeedbackdtoid());
 
 			return feedbackRepo.save(feedback);
-		} else
-			throw new InvalidFeedbackException();
-
+			
+//		} else {
+//			throw new InvalidFeedbackException();
+//		}
 	}
 
 	@Override

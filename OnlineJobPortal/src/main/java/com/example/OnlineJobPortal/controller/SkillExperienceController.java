@@ -39,9 +39,9 @@ public class SkillExperienceController {
 	
 	
 	@PutMapping("/skillexupdate/{id}")
-	public ResponseEntity<String> update(@PathVariable double years, @PathVariable int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
+	public ResponseEntity<String> update(@RequestBody SkillExperienceDto skillexdto, @PathVariable int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
 
-		SkillExperience saveduser= skillexServ.updateSkillYears(years, id);
+		SkillExperience saveduser= skillexServ.updateSkillYears(skillexdto, id);
 		return new ResponseEntity<String>("Updated", HttpStatus.CREATED);
 	}
 

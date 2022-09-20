@@ -27,8 +27,6 @@ import com.example.OnlineJobPortal.entity.Bookmarkedjob;
 import com.example.OnlineJobPortal.service.IBookmarkedJobService;
 
 @RestController
-@RequestMapping("/bmark/job")
-@CrossOrigin(origins = "*")
 public class BookmarkedJobController {
 	@Autowired
 	IBookmarkedJobService bookmarkedJobService;

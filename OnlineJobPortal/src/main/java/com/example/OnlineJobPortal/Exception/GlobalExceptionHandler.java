@@ -44,6 +44,9 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<String>("The Job doesn't exist", HttpStatus.CONFLICT);
 	}
 
-	
+	@ExceptionHandler(value=InvalidFeedbackException.class)
+	public ResponseEntity<String> InvalidFeedbackException(InvalidFeedbackException InvalidFeedbackException){
+		return new ResponseEntity<String>("The Job doesn't exist", HttpStatus.CONFLICT);
+	}
 	
 }

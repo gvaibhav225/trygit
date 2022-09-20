@@ -6,11 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
-@Entity
+
 public class SkillDto {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="skill_id")
+
 	private int id;
 	
 	@NotEmpty(message="name cant be empty")

@@ -9,5 +9,5 @@ import com.example.OnlineJobPortal.entity.SkillExperience;
 
 public interface ISkillExperienceService {
 	public SkillExperience addSkill(SkillExperienceDto skillexdto) throws FreelancerAlreadyExistsException;
-	public SkillExperience updateSkillYears(double years,int id);
+	public SkillExperience updateSkillYears(SkillExperienceDto skillexdto,int id);
 }
