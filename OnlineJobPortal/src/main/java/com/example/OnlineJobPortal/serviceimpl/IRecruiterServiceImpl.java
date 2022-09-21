@@ -4,7 +4,7 @@ import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Dto.RecruiterDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.entity.Recruiter;
 import com.example.OnlineJobPortal.repository.FreelancerRepository;
@@ -54,7 +54,7 @@ public class IRecruiterServiceImpl implements IRecruiterService {
 	}
 
 	@Override
-	public Recruiter update(RecruiterDto recruiterdto, int id)throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
+	public Recruiter update(RecruiterDto recruiterdto, int id)throws FreelancerDoesNotExistsException, InvalidPasswordException {
 		if(reRepo.existsById(id)) {
 			Recruiter userpresent=reRepo.getById(id);
 			
@@ -69,7 +69,7 @@ public class IRecruiterServiceImpl implements IRecruiterService {
 				if(recruiterdto.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{8,20}$")) {
 					userpresent.setPassword(recruiterdto.getPassword());
 				}else {
-					throw new ThisPassCantBeSetException();
+					throw new InvalidPasswordException();
 				}
 				
 			}

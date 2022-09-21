@@ -16,7 +16,7 @@ import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Dto.SkillExperienceDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.entity.SkillExperience;
 import com.example.OnlineJobPortal.service.ISkillExperienceService;
@@ -39,7 +39,7 @@ public class SkillExperienceController {
 	
 	
 	@PutMapping("/skillexupdate/{id}")
-	public ResponseEntity<String> update(@RequestBody SkillExperienceDto skillexdto, @PathVariable int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
+	public ResponseEntity<String> update(@RequestBody SkillExperienceDto skillexdto, @PathVariable int id) throws FreelancerDoesNotExistsException, InvalidPasswordException {
 
 		SkillExperience saveduser= skillexServ.updateSkillYears(skillexdto, id);
 		return new ResponseEntity<String>("Updated", HttpStatus.CREATED);

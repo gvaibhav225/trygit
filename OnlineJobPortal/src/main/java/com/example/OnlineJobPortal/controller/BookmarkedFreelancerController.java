@@ -33,10 +33,10 @@ public class BookmarkedFreelancerController {
 	IBookmarkFreelancerService bookmarkFreelancerServ;
 	
 	@PostMapping("/bookmarkedFreelancersave")
-	public ResponseEntity<String> save(@Valid @RequestBody BookmarkedFreelancerDto bookmarkedFreelancerDto, BindingResult bindingresult) throws
+	public ResponseEntity<String> save(@Valid @RequestBody BookmarkedFreelancerDto bookmarkedFreelancerDto, BindingResult bindingResult) throws
 	InvalidBookmarkedFreelancerException {
 		
-		if(bindingresult.hasErrors()) {
+		if(bindingResult.hasErrors()) {
 			return new ResponseEntity<String>("Cannot fulfill the request" , HttpStatus.BAD_REQUEST);
 		}
 		BookmarkedFreelancer bookFreelancer = bookmarkFreelancerServ.bookmarkfreelancer(bookmarkedFreelancerDto);

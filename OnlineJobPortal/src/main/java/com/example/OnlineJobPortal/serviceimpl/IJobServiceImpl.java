@@ -94,4 +94,15 @@ public class IJobServiceImpl implements IJobService {
 		
 	}
 
-}
+	@Override
+	public void awardJob(int jobId, int freelancerId) {
+		
+			Job job = jobRepo.findById(jobId).get();
+			Freelancer freelancer = freeRepo.findById(freelancerId).get();
+			job.setAwardedTo(freelancer);
+			
+		}
+		
+	}
+
+

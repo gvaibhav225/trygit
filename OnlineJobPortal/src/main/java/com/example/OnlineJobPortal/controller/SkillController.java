@@ -20,7 +20,7 @@ import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Dto.SkillDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.entity.Skill;
 

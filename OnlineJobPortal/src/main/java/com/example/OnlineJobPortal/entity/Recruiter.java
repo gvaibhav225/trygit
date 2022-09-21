@@ -33,8 +33,9 @@ public class Recruiter {
 	}
 
 //	@OneToMany(mappedBy="postedBy",targetEntity = Job.class, cascade = CascadeType.ALL)
+//	@JsonManagedReference
 //	private List<Job> postedJobs;
-//	
+	
 	@OneToMany(mappedBy="createdBy",targetEntity = Feedback.class, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<Feedback> Feedbacks;

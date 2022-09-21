@@ -3,7 +3,7 @@ package com.example.OnlineJobPortal.serviceimpl;
 import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.repository.FreelancerRepository;
 import com.example.OnlineJobPortal.service.IFreelancerService;
@@ -49,7 +49,7 @@ public class IFreelancerServiceImpl implements IFreelancerService{
 	}
 
 	@Override
-	public Freelancer update(FreelancerDto freelancerdto,int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
+	public Freelancer update(FreelancerDto freelancerdto,int id) throws FreelancerDoesNotExistsException, InvalidPasswordException {
 		if(freeRepo.existsById(id)) {
 			Freelancer userpresent=freeRepo.getById(id);
 			
@@ -64,7 +64,7 @@ public class IFreelancerServiceImpl implements IFreelancerService{
 				if(freelancerdto.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{8,20}$")) {
 					userpresent.setPassword(freelancerdto.getPassword());
 				}else {
-					throw new ThisPassCantBeSetException();
+					throw new InvalidPasswordException();
 				}
 				
 			}

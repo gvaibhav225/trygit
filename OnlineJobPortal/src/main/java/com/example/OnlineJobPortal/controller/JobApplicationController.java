@@ -19,7 +19,7 @@ import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Dto.JobApplicationDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.entity.JobApplication;
 import com.example.OnlineJobPortal.service.IFreelancerService;
@@ -51,7 +51,7 @@ public class JobApplicationController  {
 	
 	
 	@PutMapping("/jobappupdate/{id}")
-	public ResponseEntity<String> updateJobApplication(@RequestBody JobApplicationDto jobappdto,@PathVariable int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
+	public ResponseEntity<String> updateJobApplication(@RequestBody JobApplicationDto jobappdto,@PathVariable int id) throws FreelancerDoesNotExistsException, InvalidPasswordException {
 
 		JobApplication updated=jaServ.updateJobApplication(jobappdto, id);
 		return new ResponseEntity<String>("Updated", HttpStatus.CREATED);

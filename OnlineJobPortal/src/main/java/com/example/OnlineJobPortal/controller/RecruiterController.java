@@ -19,7 +19,7 @@ import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Dto.RecruiterDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.entity.Recruiter;
 import com.example.OnlineJobPortal.service.IFreelancerService;
@@ -49,7 +49,7 @@ public class RecruiterController {
 	
 	
 	@PutMapping("/recruiterupdate/{id}")
-	public ResponseEntity<String> update(@RequestBody RecruiterDto recruiterdto,@PathVariable int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
+	public ResponseEntity<String> update(@RequestBody RecruiterDto recruiterdto,@PathVariable int id) throws FreelancerDoesNotExistsException, InvalidPasswordException {
 
 		Recruiter updated=recruiterServ.update(recruiterdto, id);
 		return new ResponseEntity<String>("Updated", HttpStatus.CREATED);

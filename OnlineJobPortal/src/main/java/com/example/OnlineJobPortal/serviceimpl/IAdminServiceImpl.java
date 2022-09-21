@@ -10,7 +10,7 @@ import com.example.OnlineJobPortal.Dto.AdminDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
 import com.example.OnlineJobPortal.Exception.InvalidAdminException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Admin;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.repository.AdminRepository;
@@ -52,7 +52,7 @@ public class IAdminServiceImpl implements IAdminService{
 	}
 
 	@Override
-	public Admin update(AdminDto adminDto, int id) throws InvalidAdminException, ThisPassCantBeSetException {
+	public Admin update(AdminDto adminDto, int id) throws InvalidAdminException, InvalidPasswordException {
 		if(adminRepo.existsById(id)) {
 			Admin userpresent=adminRepo.getById(id);
 			
@@ -67,7 +67,7 @@ public class IAdminServiceImpl implements IAdminService{
 				if(adminDto.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{8,20}$")) {
 					userpresent.setPassword(adminDto.getPassword());
 				}else {
-					throw new ThisPassCantBeSetException();
+					throw new InvalidPasswordException();
 				}
 				
 			}

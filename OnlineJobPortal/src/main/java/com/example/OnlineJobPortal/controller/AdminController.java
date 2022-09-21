@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.OnlineJobPortal.Dto.AdminDto;
 import com.example.OnlineJobPortal.Exception.InvalidAdminException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Admin;
 import com.example.OnlineJobPortal.service.IAdminService;
 
@@ -44,7 +44,7 @@ public class AdminController {
 	}
 	
 	@PutMapping("/adminupdate/{id}")
-	public ResponseEntity<String> update(@RequestBody AdminDto adminDto, @PathVariable int id) throws InvalidAdminException, ThisPassCantBeSetException {
+	public ResponseEntity<String> update(@RequestBody AdminDto adminDto, @PathVariable int id) throws InvalidAdminException, InvalidPasswordException {
 		Admin adminUpdate = adminServ.update(adminDto, id);
 		return new ResponseEntity<String>("Updated",HttpStatus.CREATED);
 	}

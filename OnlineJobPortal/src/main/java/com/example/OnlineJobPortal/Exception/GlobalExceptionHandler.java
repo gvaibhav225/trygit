@@ -22,8 +22,8 @@ public class GlobalExceptionHandler {
 	}
 	
 	
-	@ExceptionHandler(value=ThisPassCantBeSetException.class)
-	public ResponseEntity<String> ThisPassCantBeSetException(ThisPassCantBeSetException ThisPassCantBeSetException){
+	@ExceptionHandler(value=InvalidPasswordException.class)
+	public ResponseEntity<String> ThisPassCantBeSetException(InvalidPasswordException InvalidPasswordException){
 		return new ResponseEntity<String>("Password should be of more than 8 characters", HttpStatus.CONFLICT);
 	}
 	

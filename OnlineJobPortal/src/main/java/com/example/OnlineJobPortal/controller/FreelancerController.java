@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
-import com.example.OnlineJobPortal.Exception.ThisPassCantBeSetException;
+import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.service.IFreelancerService;
 
@@ -48,7 +48,7 @@ public class FreelancerController {
 	
 	
 	@PutMapping("/freeupdate/{id}")
-	public ResponseEntity<String> update(@RequestBody FreelancerDto freelancerdto,@PathVariable int id) throws FreelancerDoesNotExistsException, ThisPassCantBeSetException {
+	public ResponseEntity<String> update(@RequestBody FreelancerDto freelancerdto,@PathVariable int id) throws FreelancerDoesNotExistsException, InvalidPasswordException {
 
 		Freelancer updated=freeServ.update(freelancerdto, id);
 		return new ResponseEntity<String>("Updated", HttpStatus.CREATED);
