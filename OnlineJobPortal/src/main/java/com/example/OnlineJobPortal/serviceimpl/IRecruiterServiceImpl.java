@@ -11,6 +11,7 @@ import com.example.OnlineJobPortal.repository.FreelancerRepository;
 import com.example.OnlineJobPortal.repository.RecruiterRepository;
 import com.example.OnlineJobPortal.service.IRecruiterService;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -82,4 +83,10 @@ public class IRecruiterServiceImpl implements IRecruiterService {
 			}
 
 }
+
+	@Override
+	public List<Recruiter> findAll() {
+		// TODO Auto-generated method stub
+		return reRepo.findAll();
+	}
 }

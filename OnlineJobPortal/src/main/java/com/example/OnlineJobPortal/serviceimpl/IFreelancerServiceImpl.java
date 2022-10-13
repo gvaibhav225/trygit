@@ -8,6 +8,7 @@ import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.repository.FreelancerRepository;
 import com.example.OnlineJobPortal.service.IFreelancerService;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -76,6 +77,12 @@ public class IFreelancerServiceImpl implements IFreelancerService{
 				throw new FreelancerDoesNotExistsException();
 			}
 	}
+
+	@Override
+	public List<Freelancer> findAll() {
+		// TODO Auto-generated method stub
+		return freeRepo.findAll();
+		}
 
 	
 

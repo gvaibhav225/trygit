@@ -1,5 +1,6 @@
 package com.example.OnlineJobPortal.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ public interface IFreelancerService {
 	public Freelancer save(FreelancerDto freelancerdto) throws  FreelancerAlreadyExistsException;
 	public Optional<Freelancer> findById(int id) throws FreelancerDoesNotExistsException;
 	public Freelancer update(FreelancerDto freelancerdto, int id) throws FreelancerDoesNotExistsException, InvalidPasswordException;
+	public List<Freelancer> findAll();
 
 }
 

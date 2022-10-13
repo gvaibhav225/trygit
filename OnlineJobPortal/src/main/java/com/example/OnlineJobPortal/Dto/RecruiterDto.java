@@ -6,7 +6,7 @@ import javax.validation.constraints.Pattern;
 public class RecruiterDto {
 
 	
-	private int recruiterdtoid;;
+	private int recruiterdtoid;
 	@NotEmpty(message = "first name cannot be empty")
 	private String firstName;
 	@NotEmpty(message = "last name cannot be empty")

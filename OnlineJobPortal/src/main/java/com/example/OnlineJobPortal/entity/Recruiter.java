@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 public class Recruiter {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="recruiter_id")
 	private int id;
 	private String firstName;

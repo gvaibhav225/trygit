@@ -1,5 +1,6 @@
 package com.example.OnlineJobPortal.serviceimpl;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -80,4 +81,12 @@ public class IAdminServiceImpl implements IAdminService{
 			}
 
 }
+
+
+	@Override
+	public List<Admin> findAll() {
+		// TODO Auto-generated method stub
+		
+		return adminRepo.findAll();
+	}
 }
