@@ -1,1 +1,114 @@
-<p>skill works!</p>
+<app-header>
+
+</app-header>
+
+
+<section style="background: url(&quot;assets/img/photo-1571624436279-b272aff752b5.jpg&quot;);">
+    <div class="container py-5">
+        <div class="mx-auto">
+            <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center">
+                <div class="col-xxl-4 mb-4">
+                    <div class="card bg-primary-light">
+                        <div class="card-body text-center px-4 py-5 px-md-5">
+                            <p class="fs-5 fw-bold text-primary card-text mb-2">Manage Freelancers</p>
+                            <h5 class="fw-bold card-title mb-3">Explore a list of all Registered Freelancers</h5><a class="btn btn-primary btn-sm" role="button" href="adminFreelancers.html">List all Freelancers</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 mb-4">
+                    <div class="card bg-secondary-light">
+                        <div class="card-body text-center px-4 py-5 px-md-5">
+                            <p class="fs-5 fw-bold text-secondary card-text mb-2">Manage Recruiters</p>
+                            <h5 class="fw-bold card-title mb-3">Explore a list of all Registered Recruiters</h5><a class="btn btn-secondary btn-sm" role="button" href="adminRecruiters.html">List all Recruiters</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 mb-4">
+                    <div class="card bg-info-light">
+                        <div class="card-body text-center px-4 py-5 px-md-5">
+                            <p class="fs-5 fw-bold text-info card-text mb-2">Manage Skills</p>
+                            <h5 class="fw-bold card-title mb-3">Explore a list of all Registered Skills</h5><a class="btn btn-info btn-sm" role="button" style="margin-right: 10px;" (click)="  openPopup() " >Add Skill</a>
+                            <a class="btn btn-info btn-sm" role="button" style="margin-left: 10px;" href="adminSkills.html">List Skill</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="background: rgba(255,255,255,0);border-radius: 16px;padding: 10px;">
+                <div class="row" style="background: rgba(255,255,255,0);">
+                    <div class="col-xxl-3"></div>
+                    <div class="col" style="background: #ffffff;border-radius: 16px;padding-top: 10px;padding-bottom: 10px;">
+                        <h1 style="text-align: center;font-size: 30px;font-weight: bold;color: var(--bs-blue);">Skills List</h1>
+                        <div class="table-responsive" style="background: #ffffff;text-align: center;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Skill ID</th>
+                                        <th>Skill Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider" *ngFor="let data of allskilllist">
+                                    <tr>
+                                        <td>{{data.id}}</td>
+                                        <td>{{data.name}}</td>
+                                        <td>{{data.description}}</td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle}">
+<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content">
+	<div class="modal-header">
+		<h4 class="modal-title" style="color: var(--bs-green);font-weight: bold;">Add Skill</h4>
+	</div>
+	<div class="modal-body">
+        <form [formGroup]="formValue" >
+            <div class="form-group">
+                <label for="exampleInputName">Skill Name</label>
+                <input type="text" formControlName="name" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Enter Name">
+              </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Skill Description</label>
+              <input type="text" formControlName="desc" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Description">
+            </div>
+           
+          <input type="reset" class="reset">
+            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+          </form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger"
+				(click)="closePopup()">
+		Close
+		</button>
+        <button   type="button" class="btn btn-primary" (click)="addSkill()" >Add Details</button>
+        
+	</div>
+	</div>
+</div>
+
+
+
+
+
+
+<app-footer> </app-footer>

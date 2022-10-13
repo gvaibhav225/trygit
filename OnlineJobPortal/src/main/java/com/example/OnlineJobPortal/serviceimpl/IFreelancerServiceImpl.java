@@ -84,6 +84,16 @@ public class IFreelancerServiceImpl implements IFreelancerService{
 		return freeRepo.findAll();
 		}
 
+	@Override
+	public List<Freelancer> deletebyid(int id) {
+		// TODO Auto-generated method stub
+		
+		freeRepo.deleteById(id);
+		List<Freelancer> f=freeRepo.findAll();
+		
+		return f ;
+	}
+
 	
 
 }

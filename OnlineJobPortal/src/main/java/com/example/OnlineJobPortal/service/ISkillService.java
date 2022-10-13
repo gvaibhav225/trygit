@@ -1,5 +1,7 @@
 package com.example.OnlineJobPortal.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.example.OnlineJobPortal.Dto.SkillDto;
@@ -11,5 +13,6 @@ public interface ISkillService {
 	public Skill save(@Valid SkillDto skilldto) throws FreelancerAlreadyExistsException;
 	public Skill update(SkillDto skilldto, int id) throws FreelancerDoesNotExistsException;
 	public void remove(int id) throws FreelancerDoesNotExistsException;
+	public List<Skill> findAll();
 	
 }

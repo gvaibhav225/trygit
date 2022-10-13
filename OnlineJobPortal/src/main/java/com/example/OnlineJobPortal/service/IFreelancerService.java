@@ -16,6 +16,7 @@ public interface IFreelancerService {
 	public Optional<Freelancer> findById(int id) throws FreelancerDoesNotExistsException;
 	public Freelancer update(FreelancerDto freelancerdto, int id) throws FreelancerDoesNotExistsException, InvalidPasswordException;
 	public List<Freelancer> findAll();
+	public List<Freelancer> deletebyid(int id);
 
 }
 

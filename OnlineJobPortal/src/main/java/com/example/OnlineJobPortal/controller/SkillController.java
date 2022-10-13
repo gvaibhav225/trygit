@@ -1,5 +1,6 @@
 package com.example.OnlineJobPortal.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +22,9 @@ import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Dto.SkillDto;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
+import com.example.OnlineJobPortal.Exception.InvalidAdminException;
 import com.example.OnlineJobPortal.Exception.InvalidPasswordException;
+import com.example.OnlineJobPortal.entity.Admin;
 import com.example.OnlineJobPortal.entity.Freelancer;
 import com.example.OnlineJobPortal.entity.Skill;
 
@@ -28,18 +32,19 @@ import com.example.OnlineJobPortal.service.IFreelancerService;
 import com.example.OnlineJobPortal.service.ISkillService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class SkillController {
 	
 	@Autowired
 	ISkillService skillServ;
 	
 	@PostMapping("/skillsave")
-	public ResponseEntity<String> save(@Valid @RequestBody SkillDto skilldto, BindingResult bindingresult) throws FreelancerAlreadyExistsException {
+	public ResponseEntity<Skill> save(@Valid @RequestBody SkillDto skilldto, BindingResult bindingresult) throws FreelancerAlreadyExistsException {
 		if(bindingresult.hasErrors()) {
-			return new ResponseEntity<String>("some error occured", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Skill>( HttpStatus.BAD_REQUEST);
 		}
 		Skill saveduser= skillServ.save(skilldto);
-		return new ResponseEntity<String>("Saved Successfully", HttpStatus.CREATED);
+		return new ResponseEntity<Skill>(saveduser, HttpStatus.CREATED);
 	}
 	
 	
@@ -56,6 +61,15 @@ public class SkillController {
 		skillServ.remove(id);
 		return new ResponseEntity<String>("Deleated Successfully", HttpStatus.GONE);
 	}
+	
+	
+	
+	@GetMapping("/skillFindAll")
+	public ResponseEntity<List<Skill>> findAll() throws InvalidAdminException{
+		List<Skill> adminFound =skillServ.findAll();
+		return new ResponseEntity<List<Skill>>(adminFound,HttpStatus.OK);
+	}
+	
 	
 }
 

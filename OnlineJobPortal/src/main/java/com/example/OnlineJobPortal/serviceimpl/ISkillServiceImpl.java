@@ -7,6 +7,7 @@ import com.example.OnlineJobPortal.entity.Skill;
 import com.example.OnlineJobPortal.repository.SkillRepository;
 import com.example.OnlineJobPortal.service.ISkillService;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,12 @@ public class ISkillServiceImpl implements ISkillService {
 				throw new FreelancerDoesNotExistsException();
 			}
 		
+	}
+
+	@Override
+	public List<Skill> findAll() {
+		// TODO Auto-generated method stub
+		return skillRepo.findAll();
 	}
 
 
