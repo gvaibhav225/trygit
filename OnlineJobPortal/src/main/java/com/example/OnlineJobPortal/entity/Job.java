@@ -31,6 +31,8 @@ public class Job {
 	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	private Skill skill;
 	
+	private String title;
+	private String description;
 	
 	private LocalDate posteddate;
 	
@@ -105,7 +107,7 @@ public class Job {
 		this.active = active;
 	}
 
-	public Job(int id, Skill skill, Recruiter postedBy, LocalDate posteddate, Freelancer awardedTo,
+	public Job(int id, Skill skill, Recruiter postedBy, String name, String description, LocalDate posteddate, Freelancer awardedTo,
 			List<JobApplication> jobApplications, boolean active) {
 		super();
 		this.id = id;
@@ -115,6 +117,24 @@ public class Job {
 		this.awardedTo = awardedTo;
 		this.jobApplications = jobApplications;
 		this.active = active;
+		this.description=description;
+		this.title=title;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Job() {

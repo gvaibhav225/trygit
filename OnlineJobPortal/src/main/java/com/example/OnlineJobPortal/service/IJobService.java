@@ -16,7 +16,8 @@ public interface IJobService {
 	public Job postjob(JobDto jobdto) throws FreelancerAlreadyExistsException;
 	public Optional<Job> findById(int id) throws FreelancerDoesNotExistsException;
 	public List<Job> findJobsBySkill(String name) throws FreelancerDoesNotExistsException;
-	public void close(int id) throws FreelancerDoesNotExistsException;
+	public List<Job> close(int id) throws FreelancerDoesNotExistsException;
 	public void awardJob(int jobId, int freelancerId);
+	public List<Job> findByrecId(int id);
 
 }

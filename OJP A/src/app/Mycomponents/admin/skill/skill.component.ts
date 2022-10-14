@@ -61,6 +61,13 @@ displayStyle = "none";
 
 
   }
+ 
+  delete(data:any){
+    this._http.delete<any>("http://localhost:8080/delete/"+data.id ,this.httpOptions  ).subscribe(res=>{
+      alert('Deleated Successfully')
+      this.getallskilllist()
+    })
+  }
 
 
 }

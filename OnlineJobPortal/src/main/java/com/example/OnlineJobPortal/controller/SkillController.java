@@ -57,9 +57,9 @@ public class SkillController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> remove(@PathVariable int id) throws FreelancerDoesNotExistsException{
-		skillServ.remove(id);
-		return new ResponseEntity<String>("Deleated Successfully", HttpStatus.GONE);
+	public ResponseEntity<List<Skill>> remove(@PathVariable int id) throws FreelancerDoesNotExistsException{
+		List<Skill> li=skillServ.remove(id);
+		return new ResponseEntity<List<Skill>>(li, HttpStatus.OK);
 	}
 	
 	

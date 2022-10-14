@@ -16,7 +16,7 @@ public interface BookmarkedJobRepository extends JpaRepository<Bookmarkedjob,Int
 {
 	
 
-	@Query("select fb from Bookmarkedjob fb where fb.skill.name=:name" )
+	@Query("select fb from Bookmarkedjob fb where fb.job.skill.name=:name" )
 	List<Bookmarkedjob> findBookmarkedJobsBySkillname(@Param("name") String name);
 
 }

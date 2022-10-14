@@ -47,6 +47,7 @@
                                         <th>Skill ID</th>
                                         <th>Skill Name</th>
                                         <th>Description</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider" *ngFor="let data of allskilllist">
@@ -54,7 +55,7 @@
                                         <td>{{data.id}}</td>
                                         <td>{{data.name}}</td>
                                         <td>{{data.description}}</td>
-                                        
+                                        <td> <button class="btn btn-primary" (click)="delete(data)" >Delete</button> </td>
                                     </tr>
                                 </tbody>
                             </table>

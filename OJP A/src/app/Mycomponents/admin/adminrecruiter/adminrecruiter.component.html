@@ -37,7 +37,7 @@
                                 <th>ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>User Name</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider" *ngFor="let data of allfreelist">
@@ -45,6 +45,7 @@
                                 <td>{{data.id}}</td>
                                 <td>{{data.firstName}}</td>
                                 <td>{{data.lastName}}</td>
+                                <td> <button class="btn btn-primary" (click)="delete(data)" >Delete</button> </td>
                                 
                             </tr>
                         </tbody>

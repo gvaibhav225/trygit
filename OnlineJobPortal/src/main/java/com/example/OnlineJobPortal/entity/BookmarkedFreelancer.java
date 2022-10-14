@@ -20,8 +20,8 @@ public class BookmarkedFreelancer {
 	@Column(name="bookmarkedfree_id")
 	private int id;
 	
-	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
-	private Skill skill;
+//	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+//	private Skill skill;
 	
 	@OneToOne(targetEntity = Freelancer.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	private Freelancer freelance;
@@ -31,10 +31,10 @@ public class BookmarkedFreelancer {
 	@JsonBackReference
 	private Recruiter bookmarkedBy;
 
-	public BookmarkedFreelancer(int id, Skill skill, Freelancer freelance, Recruiter bookmarkedBy) {
+	public BookmarkedFreelancer(int id, Freelancer freelance, Recruiter bookmarkedBy) {
 		super();
 		this.id = id;
-		this.skill = skill;
+	
 		this.freelance = freelance;
 		this.bookmarkedBy = bookmarkedBy;
 	}
@@ -47,13 +47,9 @@ public class BookmarkedFreelancer {
 		this.id = id;
 	}
 
-	public Skill getSkill() {
-		return skill;
-	}
 
-	public void setSkill(Skill skill) {
-		this.skill = skill;
-	}
+
+	
 
 	public Freelancer getFreelance() {
 		return freelance;

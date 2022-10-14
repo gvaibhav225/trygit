@@ -54,10 +54,10 @@ public class IBookmarkFreelancerServiceImpl implements IBookmarkFreelancerServic
 	}
 		BookmarkedFreelancer bookmarked = new BookmarkedFreelancer();
 		if(freeRepo.existsById(bookmarkedFreelancerDto.getFreelanceId()) && recruiterRepo.existsById(bookmarkedFreelancerDto.getRecruiterId())
-				&& skillRepo.existsById(bookmarkedFreelancerDto.getSkillId())) {
+				) {
 			bookmarked.setBookmarkedBy(recruiterRepo.findById(bookmarkedFreelancerDto.getRecruiterId()).get());
 			bookmarked.setFreelance(freeRepo.findById(bookmarkedFreelancerDto.getFreelanceId()).get());
-			bookmarked.setSkill(skillRepo.findById(bookmarkedFreelancerDto.getSkillId()).get());
+//			bookmarked.setSkill(skillRepo.findById(bookmarkedFreelancerDto.getSkillId()).get());
 			bookmarked.setId(bookmarkedFreelancerDto.getId());
 			return bookmarkFreeRepo.save(bookmarked);
 		}
@@ -69,10 +69,11 @@ public class IBookmarkFreelancerServiceImpl implements IBookmarkFreelancerServic
 
 
 	@Override
-	public void removeBookmarkedFreelancer(int id) throws InvalidBookmarkedFreelancerException {
+	public List<BookmarkedFreelancer> removeBookmarkedFreelancer(int id) throws InvalidBookmarkedFreelancerException {
 		// TODO Auto-generated method stub
 		if(bookmarkFreeRepo.existsById(id)) {
 			bookmarkFreeRepo.deleteById(id);
+			return bookmarkFreeRepo.findAll();
 		}
 		else {
 			throw new InvalidBookmarkedFreelancerException();
@@ -84,6 +85,12 @@ public class IBookmarkFreelancerServiceImpl implements IBookmarkFreelancerServic
 	public List<BookmarkedFreelancer> findBookmarkedFreelancer() {
 		// TODO Auto-generated method stub
 		return bookmarkFreeRepo.findAll();
+	}
+
+	@Override
+	public List<BookmarkedFreelancer> findByrecId(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,18 +28,19 @@ import com.example.OnlineJobPortal.service.IFreelancerService;
 import com.example.OnlineJobPortal.service.IJobService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class JobController {
 	
 	@Autowired
 	IJobService jobServ;
 	
 	@PostMapping("/jobsave")
-	public ResponseEntity<String> save(@Valid @RequestBody JobDto jobdto, BindingResult bindingresult) throws FreelancerAlreadyExistsException {
+	public ResponseEntity<Job> save(@Valid @RequestBody JobDto jobdto, BindingResult bindingresult) throws FreelancerAlreadyExistsException {
 		if(bindingresult.hasErrors()) {
-			return new ResponseEntity<String>("some error occured", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Job>( HttpStatus.BAD_REQUEST);
 		}
 		Job savedjob= jobServ.postjob(jobdto);
-		return new ResponseEntity<String>("Saved Successfully", HttpStatus.CREATED);
+		return new ResponseEntity<Job>(savedjob, HttpStatus.CREATED);
 	}
 	
 	
@@ -57,15 +59,21 @@ public class JobController {
 	}
 	
 	@GetMapping("/close/{id}")
-	public ResponseEntity<String>  close(@PathVariable int id) throws FreelancerDoesNotExistsException {
-		jobServ.close(id);
-		return new ResponseEntity<String> ("job closed",HttpStatus.OK);
+	public ResponseEntity<List<Job>>  close(@PathVariable int id) throws FreelancerDoesNotExistsException {
+		List<Job> lii=jobServ.close(id);
+		return new ResponseEntity<List<Job>> (lii,HttpStatus.OK);
 	}
 	
 	@PutMapping("/awardJob/{jobId}/{freelancerId}")
 	public ResponseEntity<String> awardJob(@PathVariable int jobId, @PathVariable int freelancerId) {
 		jobServ.awardJob(jobId, freelancerId);
 		return new ResponseEntity<String>("Job Awarded Successfully", HttpStatus.OK);
+	}
+	
+	@GetMapping("/jobfindbyrecruiter/{id}")
+	public ResponseEntity<List<Job>> findByrecId(@PathVariable int id) throws FreelancerDoesNotExistsException{
+		List<Job> finded=jobServ.findByrecId(id);
+		return new ResponseEntity<List<Job>>(finded,HttpStatus.OK);
 	}
 	
 

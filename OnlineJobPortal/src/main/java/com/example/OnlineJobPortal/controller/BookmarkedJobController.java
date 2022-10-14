@@ -32,17 +32,18 @@ public class BookmarkedJobController {
 	IBookmarkedJobService bookmarkedJobService;
 
 	@PostMapping("/bookmarkedjobadd")
-	public ResponseEntity<String> createBookmark(@Valid @RequestBody BookmarkedJobDTO bookmarkedjobdto,
+	public ResponseEntity<Bookmarkedjob> createBookmark(@Valid @RequestBody BookmarkedJobDTO bookmarkedjobdto,
 			BindingResult bindingResult) throws FreelancerAlreadyExistsException {
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<String>("some error occured", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Bookmarkedjob>( HttpStatus.BAD_REQUEST);
 		}
 		try {
-			bookmarkedJobService.bookmarkJob(bookmarkedjobdto);
+			Bookmarkedjob b=bookmarkedJobService.bookmarkJob(bookmarkedjobdto);
+			return new ResponseEntity<Bookmarkedjob>(b, HttpStatus.OK);
 		} catch (InvalidBookmarkedJobException exception) {
 			throw new InvalidBookmarkedJobException("One or more entered fields contain invalid objects.");
 		}
-		return new ResponseEntity<>("Added successfully", HttpStatus.OK);
+		
 
 	}
 

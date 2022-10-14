@@ -14,4 +14,5 @@ public interface IRecruiterService {
 	public Optional<Recruiter> findById(int id) throws FreelancerDoesNotExistsException;
 	public Recruiter update(RecruiterDto recruiterdto, int id) throws FreelancerDoesNotExistsException, InvalidPasswordException;
 	public List<Recruiter> findAll();
+	public List<Recruiter> deletebyid(int id);
 }

@@ -14,4 +14,8 @@ public interface JobRepository extends JpaRepository<Job,Integer> {
 	
 	@Query("Select j from Job j where j.skill.name=:name")
 	public List<Job> findJobsBySkill(@Param("name") String name);
+	
+	
+	@Query("Select j from Job j where j.postedBy.id=:id")
+	public List<Job> findbyrecid(@Param("id") int id);
 }

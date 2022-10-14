@@ -89,4 +89,11 @@ public class IRecruiterServiceImpl implements IRecruiterService {
 		// TODO Auto-generated method stub
 		return reRepo.findAll();
 	}
+
+	@Override
+	public List<Recruiter> deletebyid(int id) {
+		// TODO Auto-generated method stub
+		reRepo.deleteById(id);		
+		return reRepo.findAll();
+	}
 }

@@ -9,8 +9,8 @@ public class BookmarkedFreelancerDto {
 	
     private int id;
 	
-    @NotNull(message = "Skill Id cannot be null")
-	private int skillId;
+//    @NotNull(message = "Skill Id cannot be null")
+//	private int skillId;
 	
     @NotNull(message = "Freelancer Id cannot be null")
 	private int freelanceId;
@@ -22,12 +22,12 @@ public class BookmarkedFreelancerDto {
 		super();
 	}
 
-	public BookmarkedFreelancerDto(int id, @NotNull(message = "Skill Id cannot be null") int skillId,
+	public BookmarkedFreelancerDto(int id,
 			@NotNull(message = "Freelancer Id cannot be null") int freelanceId,
 			@NotNull(message = "Recruiter Id cannot be null") int recruiterId) {
 		super();
 		this.id = id;
-		this.skillId = skillId;
+//		this.skillId = skillId;
 		this.freelanceId = freelanceId;
 		this.recruiterId = recruiterId;
 	}
@@ -39,14 +39,14 @@ public class BookmarkedFreelancerDto {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getSkillId() {
-		return skillId;
-	}
-
-	public void setSkillId(int skillId) {
-		this.skillId = skillId;
-	}
+//
+//	public int getSkillId() {
+//		return skillId;
+//	}
+//
+//	public void setSkillId(int skillId) {
+//		this.skillId = skillId;
+//	}
 
 	public int getFreelanceId() {
 		return freelanceId;

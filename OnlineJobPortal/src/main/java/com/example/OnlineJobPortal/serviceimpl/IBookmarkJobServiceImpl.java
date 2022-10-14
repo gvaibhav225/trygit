@@ -37,9 +37,8 @@ public class IBookmarkJobServiceImpl implements IBookmarkedJobService {
 		}
 		
 		if (jobRepo.existsById(bookmarkedjobdto.getJobId()) &&
-				freelancerRepo.existsById(bookmarkedjobdto.getFreelancerId()) &&
-				skillRepo.existsById(bookmarkedjobdto.getSkillId())) {
-			bookmarkedJob.setSkill(skillRepo.findById(bookmarkedjobdto.getSkillId()).get());
+				freelancerRepo.existsById(bookmarkedjobdto.getFreelancerId())) {
+//			bookmarkedJob.setSkill(skillRepo.findById(bookmarkedjobdto.getSkillId()).get());
 			bookmarkedJob.setFreelance(freelancerRepo.findById(bookmarkedjobdto.getFreelancerId()).get());
 			bookmarkedJob.setJob(jobRepo.findById(bookmarkedjobdto.getJobId()).get());
 			bookmarkedJob.setId(bookmarkedjobdto.getBookmaryjobId());

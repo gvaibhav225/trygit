@@ -22,6 +22,7 @@ import com.example.OnlineJobPortal.Dto.FreelancerDto;
 import com.example.OnlineJobPortal.Dto.RecruiterDto;
 import com.example.OnlineJobPortal.Dto.SkillDto;
 import com.example.OnlineJobPortal.Exception.FreelancerDoesNotExistsException;
+import com.example.OnlineJobPortal.Exception.InvalidAdminException;
 import com.example.OnlineJobPortal.Exception.InvalidBookmarkedFreelancerException;
 import com.example.OnlineJobPortal.entity.BookmarkedFreelancer;
 import com.example.OnlineJobPortal.entity.Freelancer;
@@ -35,14 +36,14 @@ public class BookmarkedFreelancerController {
 	IBookmarkFreelancerService bookmarkFreelancerServ;
 	
 	@PostMapping("/bookmarkedFreelancersave")
-	public ResponseEntity<String> save(@Valid @RequestBody BookmarkedFreelancerDto bookmarkedFreelancerDto, BindingResult bindingResult) throws
+	public ResponseEntity<BookmarkedFreelancer> save(@Valid @RequestBody BookmarkedFreelancerDto bookmarkedFreelancerDto, BindingResult bindingResult) throws
 	InvalidBookmarkedFreelancerException {
 		
 		if(bindingResult.hasErrors()) {
-			return new ResponseEntity<String>("Cannot fulfill the request" , HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<BookmarkedFreelancer>( HttpStatus.BAD_REQUEST);
 		}
 		BookmarkedFreelancer bookFreelancer = bookmarkFreelancerServ.bookmarkfreelancer(bookmarkedFreelancerDto);
-		return new ResponseEntity<String>("Saved successfully",HttpStatus.CREATED);
+		return new ResponseEntity<BookmarkedFreelancer>(bookFreelancer,HttpStatus.CREATED);
 		
 	}
 	
@@ -60,10 +61,16 @@ public class BookmarkedFreelancerController {
 	}
 	
 	@DeleteMapping("/bookmarkfreedlt/{id}")
-	public ResponseEntity<String> removeBookmarkedFreelancer(int id) throws InvalidBookmarkedFreelancerException{
-		bookmarkFreelancerServ.removeBookmarkedFreelancer(id);
-		return new ResponseEntity<String>("Saved successfully",HttpStatus.CREATED);
+	public ResponseEntity<List<BookmarkedFreelancer>> removeBookmarkedFreelancer(@PathVariable int id) throws InvalidBookmarkedFreelancerException{
+		List<BookmarkedFreelancer> lii=bookmarkFreelancerServ.removeBookmarkedFreelancer(id);
+		return new ResponseEntity<List<BookmarkedFreelancer>>(lii,HttpStatus.CREATED);
 		
 	}
+	@GetMapping("/bookmarkfreefindbyrec/{id}")
+	public ResponseEntity<List<BookmarkedFreelancer>> findByrecId(@PathVariable int id) throws InvalidBookmarkedFreelancerException{
+		List<BookmarkedFreelancer> finded=bookmarkFreelancerServ.findByrecId(id);
+		return new ResponseEntity<List<BookmarkedFreelancer>>(finded,HttpStatus.OK);
+	}
+
 
 }

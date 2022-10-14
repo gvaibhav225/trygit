@@ -12,7 +12,7 @@ import com.example.OnlineJobPortal.entity.Skill;
 public interface ISkillService {
 	public Skill save(@Valid SkillDto skilldto) throws FreelancerAlreadyExistsException;
 	public Skill update(SkillDto skilldto, int id) throws FreelancerDoesNotExistsException;
-	public void remove(int id) throws FreelancerDoesNotExistsException;
+	public List<Skill> remove(int id) throws FreelancerDoesNotExistsException;
 	public List<Skill> findAll();
 	
 }

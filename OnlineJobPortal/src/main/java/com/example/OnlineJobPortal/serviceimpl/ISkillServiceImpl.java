@@ -55,12 +55,13 @@ public class ISkillServiceImpl implements ISkillService {
 	}
 
 	@Override
-	public void remove(int id) throws FreelancerDoesNotExistsException {
+	public List<Skill> remove(int id) throws FreelancerDoesNotExistsException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 				if(skillRepo.existsById(id)) {
 					
 					skillRepo.deleteById(id);
+					return skillRepo.findAll();
 					
 			}else {
 				throw new FreelancerDoesNotExistsException();

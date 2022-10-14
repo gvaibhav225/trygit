@@ -46,9 +46,11 @@ public class IJobServiceImpl implements IJobService {
 			Job job=new Job();
 			job.setActive(true);
 			job.setId(jobdto.getId());
-			job.setSkill(skillRepo.getById(jobdto.getSkillid()));
-//			job.setPostedBy(recruiterRepo.getById(jobdto.getRecruiterid()));
+			job.setSkill(skillRepo.findById(jobdto.getSkillid()).get());
+			job.setPostedBy(recruiterRepo.getById(jobdto.getRecruiterid()));
 			job.setPosteddate(LocalDate.now());
+			job.setDescription(jobdto.getDescription());
+			job.setTitle((jobdto.getTitle()));
 			
 			return jobRepo.save(job);
 			
@@ -83,10 +85,17 @@ public class IJobServiceImpl implements IJobService {
 	}
 
 	@Override
-	public void close(int id) throws FreelancerDoesNotExistsException {
+	public List<Job> close(int id) throws FreelancerDoesNotExistsException {
 		// TODO Auto-generated method stub
 		if(jobRepo.existsById(id)) {
-			jobRepo.getById(id).setActive(false);
+			
+			Job present=jobRepo.findById(id).get();
+			
+			
+			present.setActive(false);
+			
+			jobRepo.save(present);
+			return jobRepo.findAll();
 		}
 		else {
 			throw new FreelancerDoesNotExistsException();
@@ -102,6 +111,12 @@ public class IJobServiceImpl implements IJobService {
 			job.setAwardedTo(freelancer);
 			
 		}
+
+	@Override
+	public List<Job> findByrecId(int id) {
+		// TODO Auto-generated method stub
+		return jobRepo.findbyrecid(id);
+	}
 		
 	}
 

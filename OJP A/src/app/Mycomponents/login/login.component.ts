@@ -61,6 +61,7 @@ rolee:string | undefined
       this._http.get<any>("http://localhost:8080/recruiterFindAll").subscribe(res=>{
         console.log(res)
         const ans=res.find((a:any)=>{
+          localStorage.setItem('recruiterid', JSON.stringify( a.id))
           return a.firstName===this.loginform.value.firstname && a.password===this.loginform.value.password
         })
         if(ans){
@@ -79,6 +80,7 @@ rolee:string | undefined
       this._http.get<any>("http://localhost:8080/freeFindAll").subscribe(res=>{
         console.log(res)
         const ans=res.find((a:any)=>{
+          localStorage.setItem('freelancerid',a.id)
           return a.firstName===this.loginform.value.firstname && a.password===this.loginform.value.password
         })
         if(ans){

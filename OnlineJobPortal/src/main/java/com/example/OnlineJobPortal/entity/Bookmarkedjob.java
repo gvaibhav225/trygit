@@ -19,8 +19,8 @@ public class Bookmarkedjob {
 	@Column(name="bookmarked_id")
 	private int id;
 	
-	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
-	private Skill skill;
+//	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+//	private Skill skill;
 	
 	@OneToOne(targetEntity = Job.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	private Job job;
@@ -38,13 +38,13 @@ public class Bookmarkedjob {
 		this.id = id;
 	}
 
-	public Skill getSkill() {
-		return skill;
-	}
+//	public Skill getSkill() {
+//		return skill;
+//	}
 
-	public void setSkill(Skill skill) {
-		this.skill = skill;
-	}
+//	public void setSkill(Skill skill) {
+//		this.skill = skill;
+//	}
 
 	public Job getJob() {
 		return job;
@@ -62,10 +62,10 @@ public class Bookmarkedjob {
 		this.freelance = freelance;
 	}
 
-	public Bookmarkedjob(int id, Skill skill, Job job, Freelancer freelance) {
+	public Bookmarkedjob(int id, Job job, Freelancer freelance) {
 		super();
 		this.id = id;
-		this.skill = skill;
+	
 		this.job = job;
 		this.freelance = freelance;
 	}

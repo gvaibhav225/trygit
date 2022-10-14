@@ -14,6 +14,7 @@ import com.example.OnlineJobPortal.entity.Freelancer;
 public interface IBookmarkFreelancerService {
 	public BookmarkedFreelancer bookmarkfreelancer(BookmarkedFreelancerDto bookmarkedFreelancerDto) throws InvalidBookmarkedFreelancerException;
 	public List<BookmarkedFreelancer> findBookmarkedFreelancer();
-	public void removeBookmarkedFreelancer(int id) throws InvalidBookmarkedFreelancerException;
+	public List<BookmarkedFreelancer> removeBookmarkedFreelancer(int id) throws InvalidBookmarkedFreelancerException;
 	public Optional<BookmarkedFreelancer> findById(int id) throws InvalidBookmarkedFreelancerException;
+	public List<BookmarkedFreelancer> findByrecId(int id);
 }
