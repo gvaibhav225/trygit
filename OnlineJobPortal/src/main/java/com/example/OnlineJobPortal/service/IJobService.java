@@ -19,5 +19,6 @@ public interface IJobService {
 	public List<Job> close(int id) throws FreelancerDoesNotExistsException;
 	public void awardJob(int jobId, int freelancerId);
 	public List<Job> findByrecId(int id);
+	public List<Job> findByactive();
 
 }

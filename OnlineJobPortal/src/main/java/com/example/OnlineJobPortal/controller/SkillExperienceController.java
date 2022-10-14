@@ -1,11 +1,16 @@
 package com.example.OnlineJobPortal.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,6 +27,7 @@ import com.example.OnlineJobPortal.entity.SkillExperience;
 import com.example.OnlineJobPortal.service.ISkillExperienceService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class SkillExperienceController {
 
 	@Autowired
@@ -29,12 +35,12 @@ public class SkillExperienceController {
 	
 	
 	@PostMapping("/skillexsave")
-	public ResponseEntity<String> addSkill(@Valid @RequestBody SkillExperienceDto skillexdto, BindingResult bindingresult) throws FreelancerAlreadyExistsException {
+	public ResponseEntity<SkillExperience> addSkill(@Valid @RequestBody SkillExperienceDto skillexdto, BindingResult bindingresult) throws FreelancerAlreadyExistsException {
 		if(bindingresult.hasErrors()) {
-			return new ResponseEntity<String>("some error occured", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<SkillExperience>( HttpStatus.BAD_REQUEST);
 		}
 		SkillExperience saveduser= skillexServ.addSkill(skillexdto);
-		return new ResponseEntity<String>("Saved Successfully", HttpStatus.CREATED);
+		return new ResponseEntity<SkillExperience>(saveduser, HttpStatus.CREATED);
 	}
 	
 	
@@ -44,5 +50,12 @@ public class SkillExperienceController {
 		SkillExperience saveduser= skillexServ.updateSkillYears(skillexdto, id);
 		return new ResponseEntity<String>("Updated", HttpStatus.CREATED);
 	}
+	
+	@GetMapping("/skillexfindall/{id}")
+	public ResponseEntity<List<SkillExperience>> findById(@PathVariable int id) throws FreelancerDoesNotExistsException{
+		List<SkillExperience> finded=skillexServ.findallByfreeId(id);
+		return new ResponseEntity<List<SkillExperience>>(finded,HttpStatus.OK);
+	}
+	
 
 }

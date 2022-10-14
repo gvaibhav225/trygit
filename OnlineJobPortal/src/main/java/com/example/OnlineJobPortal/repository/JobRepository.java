@@ -18,4 +18,7 @@ public interface JobRepository extends JpaRepository<Job,Integer> {
 	
 	@Query("Select j from Job j where j.postedBy.id=:id")
 	public List<Job> findbyrecid(@Param("id") int id);
+	
+	@Query("Select j from Job j where j.active=1")
+	public List<Job> findByactive();
 }

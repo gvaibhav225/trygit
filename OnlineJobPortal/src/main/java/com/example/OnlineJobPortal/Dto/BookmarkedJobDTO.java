@@ -3,6 +3,8 @@ package com.example.OnlineJobPortal.Dto;
 import javax.validation.constraints.NotNull;
 
 public class BookmarkedJobDTO {
+	
+	private Integer bookmaryjobId;
 //	@NotNull(message = "Skill_id cannot be null")
 //	private Integer skillId;
 
@@ -12,7 +14,7 @@ public class BookmarkedJobDTO {
 	@NotNull(message = "job_id cannot be null")
 	private Integer jobId;
 	
-	private Integer bookmaryjobId;
+	
 
 	public Integer getBookmaryjobId() {
 		return bookmaryjobId;
@@ -26,11 +28,13 @@ public class BookmarkedJobDTO {
 		super();
 	}
 
-	public BookmarkedJobDTO(
+	
+
+	public BookmarkedJobDTO(Integer bookmaryjobId,
 			@NotNull(message = "freelancer_id cannot be null") Integer freelancerId,
 			@NotNull(message = "job_id cannot be null") Integer jobId) {
 		super();
-//		this.skillId = skillId;
+		this.bookmaryjobId = bookmaryjobId;
 		this.freelancerId = freelancerId;
 		this.jobId = jobId;
 	}

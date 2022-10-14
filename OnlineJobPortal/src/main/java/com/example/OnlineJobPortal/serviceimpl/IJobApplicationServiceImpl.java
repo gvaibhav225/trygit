@@ -15,6 +15,7 @@ import com.example.OnlineJobPortal.service.IJobApplicationService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -48,13 +49,14 @@ public class IJobApplicationServiceImpl implements IJobApplicationService {
 			throw new FreelancerAlreadyExistsException();
 		}
 		
-		if(freeRepo.existsById(jobappdto.getFreelancerid())&&jobRepo.existsById(jobappdto.getJobid())&&jobRepo.getById(jobappdto.getJobid()).isActive()) {
+		if(freeRepo.existsById(jobappdto.getFreelancerid())&&jobRepo.existsById(jobappdto.getJobid())) {
 			
 			JobApplication job=new JobApplication();
 			job.setAppliedDate(LocalDateTime.now());
 			job.setCoverLetter(jobappdto.getCoverLetter());
 			job.setFreelance(freeRepo.getById(jobappdto.getFreelancerid()));
 			job.setId(jobappdto.getJobappdtoid());
+//			job.setJob(jobRepo.findById(jobappdto.getJobid()).get());
 			
 			return jaRepo.save(job);
 		}
@@ -92,6 +94,12 @@ public class IJobApplicationServiceImpl implements IJobApplicationService {
 		}else {
 			throw new FreelancerDoesNotExistsException();
 		}
+	}
+
+	@Override
+	public List<JobApplication> findByfreeId(int id) {
+		// TODO Auto-generated method stub
+		return jaRepo.findbyfreeid(id);
 	}
 
 }

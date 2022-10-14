@@ -1,5 +1,6 @@
 package com.example.OnlineJobPortal.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,18 +30,19 @@ import com.example.OnlineJobPortal.service.IJobApplicationService;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class JobApplicationController  {
 	
 	@Autowired
 	IJobApplicationService jaServ;
 	
 	@PostMapping("/jobappsave")
-	public ResponseEntity<String> applyToJob(@Valid @RequestBody JobApplicationDto jobappdto , BindingResult bindingresult) throws FreelancerAlreadyExistsException {
+	public ResponseEntity<JobApplication> applyToJob(@Valid @RequestBody JobApplicationDto jobappdto , BindingResult bindingresult) throws FreelancerAlreadyExistsException {
 		if(bindingresult.hasErrors()) {
-			return new ResponseEntity<String>("some error occured", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<JobApplication>( HttpStatus.BAD_REQUEST);
 		}
 		JobApplication applied= jaServ.applyToJob(jobappdto);
-		return new ResponseEntity<String>("Applied Successfully", HttpStatus.CREATED);
+		return new ResponseEntity<JobApplication>(applied, HttpStatus.CREATED);
 	}
 	
 	
@@ -56,5 +59,16 @@ public class JobApplicationController  {
 		JobApplication updated=jaServ.updateJobApplication(jobappdto, id);
 		return new ResponseEntity<String>("Updated", HttpStatus.CREATED);
 	}
+	
+	
+	@GetMapping("/jobappfindbyfree/{id}")
+	public ResponseEntity<List<JobApplication>> findByfreeId(@PathVariable int id) throws FreelancerDoesNotExistsException{
+		List<JobApplication> finded=jaServ.findByfreeId(id);
+		return new ResponseEntity<List<JobApplication>>(finded,HttpStatus.OK);
+	}
+	
+	
+	
+	
 
 }

@@ -32,16 +32,16 @@ public class IBookmarkJobServiceImpl implements IBookmarkedJobService {
 	public Bookmarkedjob bookmarkJob(BookmarkedJobDTO bookmarkedjobdto) throws FreelancerAlreadyExistsException {
 		Bookmarkedjob bookmarkedJob = new Bookmarkedjob();
 
-		if(bookmarkedjobRepo.existsById(bookmarkedjobdto.getBookmaryjobId())) {
-			throw new FreelancerAlreadyExistsException();
-		}
+//		if(bookmarkedjobRepo.existsById(bookmarkedjobdto.getBookmaryjobId())) {
+//			throw new FreelancerAlreadyExistsException();
+//		}
 		
 		if (jobRepo.existsById(bookmarkedjobdto.getJobId()) &&
 				freelancerRepo.existsById(bookmarkedjobdto.getFreelancerId())) {
 //			bookmarkedJob.setSkill(skillRepo.findById(bookmarkedjobdto.getSkillId()).get());
 			bookmarkedJob.setFreelance(freelancerRepo.findById(bookmarkedjobdto.getFreelancerId()).get());
 			bookmarkedJob.setJob(jobRepo.findById(bookmarkedjobdto.getJobId()).get());
-			bookmarkedJob.setId(bookmarkedjobdto.getBookmaryjobId());
+//			bookmarkedJob.setId(bookmarkedjobdto.getBookmaryjobId());
 			return bookmarkedjobRepo.save(bookmarkedJob);
 		}
 		else {
@@ -71,13 +71,21 @@ public class IBookmarkJobServiceImpl implements IBookmarkedJobService {
 
 
 	@Override
-	public void remove(int BId) {
+	public List<Bookmarkedjob>  remove(int BId) {
 		if (bookmarkedjobRepo.existsById(BId)) {
 
 			bookmarkedjobRepo.deleteById(BId);
+			
+			return bookmarkedjobRepo.findAll();
 		} else {
 			throw new InvalidBookmarkedJobException();
 		}
+	}
+
+	@Override
+	public List<Bookmarkedjob> findByfreeid(int id) {
+		// TODO Auto-generated method stub
+		return bookmarkedjobRepo.findbyfreeid(id);
 	}
 
 

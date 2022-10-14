@@ -12,7 +12,7 @@ export class BookmarkfreelancerComponent implements OnInit {
   bookmarkfreelancer: Bookmarkfreelancer=new Bookmarkfreelancer
   allfreelist:any
   allbookfreelist:any
-  done!:boolean
+  done!:boolean[]
   
   constructor( private _http:HttpClient) { }
 
@@ -35,7 +35,7 @@ export class BookmarkfreelancerComponent implements OnInit {
 
   getallbookmarkfree(){
     
-    this._http.get<any>("http://localhost:8080/bookmarkfreefinall").subscribe(res=>{
+    this._http.get<any>("http://localhost:8080/bookmarkfreefindbyrec/"+JSON.parse(this.reqid!), this.httpOptions).subscribe(res=>{
       this.allbookfreelist=res
   })
   }
@@ -51,6 +51,8 @@ export class BookmarkfreelancerComponent implements OnInit {
 
     this._http.post<any>("http://localhost:8080/bookmarkedFreelancersave", this.bookmarkfreelancer , this.httpOptions).subscribe(res=>{
       alert("bookmarked")
+
+     
  
       this.getallbookmarkfree()
     })
@@ -67,3 +69,7 @@ this.getallbookmarkfree();
   }
 
 }
+function done(id: any) {
+  throw new Error('Function not implemented.');
+}
+

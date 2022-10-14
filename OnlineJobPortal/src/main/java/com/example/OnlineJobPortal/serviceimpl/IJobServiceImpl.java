@@ -108,7 +108,7 @@ public class IJobServiceImpl implements IJobService {
 		
 			Job job = jobRepo.findById(jobId).get();
 			Freelancer freelancer = freeRepo.findById(freelancerId).get();
-			job.setAwardedTo(freelancer);
+//			job.setAwardedTo(freelancer);
 			
 		}
 
@@ -116,6 +116,12 @@ public class IJobServiceImpl implements IJobService {
 	public List<Job> findByrecId(int id) {
 		// TODO Auto-generated method stub
 		return jobRepo.findbyrecid(id);
+	}
+
+	@Override
+	public List<Job> findByactive() {
+		// TODO Auto-generated method stub
+		return jobRepo.findByactive();
 	}
 		
 	}

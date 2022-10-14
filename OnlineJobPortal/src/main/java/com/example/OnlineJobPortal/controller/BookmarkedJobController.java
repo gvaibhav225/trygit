@@ -21,12 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.OnlineJobPortal.Dto.BookmarkedJobDTO;
 import com.example.OnlineJobPortal.Exception.FreelancerAlreadyExistsException;
+import com.example.OnlineJobPortal.Exception.InvalidBookmarkedFreelancerException;
 import com.example.OnlineJobPortal.Exception.InvalidBookmarkedJobException;
 import com.example.OnlineJobPortal.Exception.JobPortalValidationException;
+import com.example.OnlineJobPortal.entity.BookmarkedFreelancer;
 import com.example.OnlineJobPortal.entity.Bookmarkedjob;
 import com.example.OnlineJobPortal.service.IBookmarkedJobService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class BookmarkedJobController {
 	@Autowired
 	IBookmarkedJobService bookmarkedJobService;
@@ -49,13 +52,14 @@ public class BookmarkedJobController {
 
 
 	@DeleteMapping("/bookmarkjobdelete/{id}")
-	public ResponseEntity<Object> deleteById(@PathVariable int id) {
+	public ResponseEntity<List<Bookmarkedjob>> deleteById(@PathVariable int id) {
 		try {
-			bookmarkedJobService.remove(id);
+			List<Bookmarkedjob> bi=	bookmarkedJobService.remove(id);
+			return new ResponseEntity<List<Bookmarkedjob>>(bi, HttpStatus.OK);
 		} catch (InvalidBookmarkedJobException exception) {
 			throw new InvalidBookmarkedJobException("No bookmark with specified id exists.");
 		}
-		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+		
 	}
 
 	@GetMapping("/get/id/{id}")
@@ -77,6 +81,13 @@ public class BookmarkedJobController {
 			throw new InvalidBookmarkedJobException("No bookmarks found for the specified skill name");
 		}
 	}
+	
+	@GetMapping("/bookmarkjobfindbyfree/{id}")
+	public ResponseEntity<List<Bookmarkedjob>> findByrecId(@PathVariable int id) throws InvalidBookmarkedFreelancerException{
+		List<Bookmarkedjob> finded=bookmarkedJobService.findByfreeid(id);
+		return new ResponseEntity<List<Bookmarkedjob>>(finded,HttpStatus.OK);
+	}
+
 
 	
 

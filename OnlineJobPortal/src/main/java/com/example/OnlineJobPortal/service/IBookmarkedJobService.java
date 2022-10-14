@@ -16,7 +16,8 @@ public interface IBookmarkedJobService {
 public	Bookmarkedjob bookmarkJob(BookmarkedJobDTO bookmarkedjobdto) throws FreelancerAlreadyExistsException;
 public List<Bookmarkedjob> findBookmarkedJobsBySkillName(String name);
 public Bookmarkedjob findById(int id);
-void remove(int BId);
+List<Bookmarkedjob> remove(int BId);
+public List<Bookmarkedjob> findByfreeid(int id);
 
 }
 

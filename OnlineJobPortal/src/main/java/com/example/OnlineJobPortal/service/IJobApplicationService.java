@@ -1,5 +1,6 @@
 package com.example.OnlineJobPortal.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.example.OnlineJobPortal.Dto.JobApplicationDto;
@@ -13,5 +14,6 @@ public interface IJobApplicationService {
 	public JobApplication applyToJob(JobApplicationDto jobappdto) throws FreelancerAlreadyExistsException;
 	public JobApplication updateJobApplication(JobApplicationDto jobappdto, int id) throws FreelancerDoesNotExistsException;
 	public Optional<JobApplication> findById(int id) throws FreelancerDoesNotExistsException;
+	public List<JobApplication> findByfreeId(int id);
 	
 }

@@ -76,5 +76,10 @@ public class JobController {
 		return new ResponseEntity<List<Job>>(finded,HttpStatus.OK);
 	}
 	
-
+	@GetMapping("/jobfindbyactive")
+	public ResponseEntity<List<Job>> findByactive() throws FreelancerDoesNotExistsException{
+		List<Job> finded=jobServ.findByactive();
+		return new ResponseEntity<List<Job>>(finded,HttpStatus.OK);
+	}
+	
 }

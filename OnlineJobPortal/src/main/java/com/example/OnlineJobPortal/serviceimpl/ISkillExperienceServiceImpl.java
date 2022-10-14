@@ -11,6 +11,8 @@ import com.example.OnlineJobPortal.repository.SkillExperienceRepository;
 import com.example.OnlineJobPortal.repository.SkillRepository;
 import com.example.OnlineJobPortal.service.ISkillExperienceService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +36,7 @@ public class ISkillExperienceServiceImpl implements ISkillExperienceService {
 	if(skillexRepo.existsById(skillexdto.getSkillexid())) {
 		throw new FreelancerAlreadyExistsException();
 	}
-	if(skillRepo.getByName(skillexdto.getSkillname())==null &&freeRepo.existsById(skillexdto.getFreelancerid())) {
+	if(freeRepo.existsById(skillexdto.getFreelancerid())) {
 	SkillExperience ske=new SkillExperience();
 	ske.setFreelance(freeRepo.getById(skillexdto.getFreelancerid()));
 	ske.setId(skillexdto.getSkillexid());
@@ -63,6 +65,12 @@ public class ISkillExperienceServiceImpl implements ISkillExperienceService {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public List<SkillExperience> findallByfreeId(int id) {
+		// TODO Auto-generated method stub
+		return skillexRepo.skillfindbyfreeid(id);
 	}
 
 }

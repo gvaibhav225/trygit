@@ -36,8 +36,9 @@ public class Job {
 	
 	private LocalDate posteddate;
 	
-	@OneToOne(targetEntity = Freelancer.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
-	private Freelancer awardedTo;
+//	@OneToOne(targetEntity = Freelancer.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+//	private Freelancer awardedTo;
+	
 	
 	@OneToMany(mappedBy="job",targetEntity = JobApplication.class,cascade = CascadeType.ALL)
 	@JsonManagedReference
@@ -83,13 +84,13 @@ public class Job {
 		this.posteddate = posteddate;
 	}
 
-	public Freelancer getAwardedTo() {
-		return awardedTo;
-	}
-
-	public void setAwardedTo(Freelancer awardedTo) {
-		this.awardedTo = awardedTo;
-	}
+//	public Freelancer getAwardedTo() {
+//		return awardedTo;
+//	}
+//
+//	public void setAwardedTo(Freelancer awardedTo) {
+//		this.awardedTo = awardedTo;
+//	}
 
 	public List<JobApplication> getJobApplications() {
 		return jobApplications;
@@ -107,14 +108,14 @@ public class Job {
 		this.active = active;
 	}
 
-	public Job(int id, Skill skill, Recruiter postedBy, String name, String description, LocalDate posteddate, Freelancer awardedTo,
+	public Job(int id, Skill skill, Recruiter postedBy, String name, String description, LocalDate posteddate, 
 			List<JobApplication> jobApplications, boolean active) {
 		super();
 		this.id = id;
 		this.skill = skill;
 		this.postedBy = postedBy;
 		this.posteddate = posteddate;
-		this.awardedTo = awardedTo;
+//		this.awardedTo = awardedTo;
 		this.jobApplications = jobApplications;
 		this.active = active;
 		this.description=description;

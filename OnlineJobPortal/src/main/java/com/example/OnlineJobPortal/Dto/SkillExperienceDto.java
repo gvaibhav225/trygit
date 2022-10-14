@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 public class SkillExperienceDto {
 
-	@NotNull(message="id cant be empty")
+	
 	private int skillexid;
 	
 	@NotEmpty(message="skillname cant be empty")
