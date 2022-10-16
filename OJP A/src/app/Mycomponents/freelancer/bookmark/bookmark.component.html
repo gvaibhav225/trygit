@@ -78,7 +78,7 @@
                     </table>
                 </div>
             </div>
-            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+
         </div>
     </div>
 </div>
@@ -98,16 +98,16 @@
                         <thead>
                             <tr>
                                 <th>Job ApplicationID</th>
-                                <th>Job Title</th>
-                                <th>Job Description</th>
+                                <th>Applied Date</th>
+                                
                                 
                             </tr>
                         </thead>
                         <tbody *ngFor="let data of allappliedjobbyfree">
                             <tr>
+                                
                                 <td>{{data.id}}</td>
-                                <td>{{data.job.title}}</td>
-                                <td>{{data.job.description}}</td>
+                                <td>{{data.appliedDate}}</td> 
                                
                             </tr>
                             <tr></tr>
@@ -115,7 +115,7 @@
                     </table>
                 </div>
             </div>
-            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+           
         </div>
     </div>
 </div>
@@ -152,14 +152,13 @@
                                 <td>{{data.id}}</td>
                                 <td>{{data.job.title}}</td>
                                 <td>{{data.job.description}}</td>
-                                <td> <button class="btn btn-primary"  (click)=" deletebookmarkjob(data)" > Remove </button> </td>
+                                <td> <button class="btn btn-primary"  (click)="deletebookmarkjob(data)" > Remove </button> </td>
                             </tr>
                             <tr></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
         </div>
     </div>
 </div>

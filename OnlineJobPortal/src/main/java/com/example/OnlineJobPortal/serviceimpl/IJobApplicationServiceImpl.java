@@ -56,7 +56,7 @@ public class IJobApplicationServiceImpl implements IJobApplicationService {
 			job.setCoverLetter(jobappdto.getCoverLetter());
 			job.setFreelance(freeRepo.getById(jobappdto.getFreelancerid()));
 			job.setId(jobappdto.getJobappdtoid());
-//			job.setJob(jobRepo.findById(jobappdto.getJobid()).get());
+			job.setJob(jobRepo.findById(jobappdto.getJobid()).get());
 			
 			return jaRepo.save(job);
 		}

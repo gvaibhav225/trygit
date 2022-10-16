@@ -18,10 +18,9 @@ export class BookmarkComponent implements OnInit {
   constructor(private _http:HttpClient) { }
 
   ngOnInit(): void {
-this.getallactivejobs()
-this.getallbookmarkedjob()
+this.getallactivejobs(),
+this.getallbookmarkedjob(),
 this.getallappliedjobsbyfree()
-   
   }
 
 getallactivejobs(){
@@ -35,41 +34,44 @@ httpOptions={
 }
 reqid =  localStorage.getItem('freelancerid')
 
-bookmarkjob(data:any){
-this.bookmarkedJob.freelancerId=JSON.parse(this.reqid!)
-this.bookmarkedJob.jobId=data.id
-
-this._http.post<any>("http://localhost:8080/bookmarkedjobadd", this.bookmarkedJob, this.httpOptions).subscribe(res=>{
-  alert("Bookmarked Successsfully")
-  this.getallbookmarkedjob()
-})
-
-}
-
 getallbookmarkedjob(){
   this._http.get<any>("http://localhost:8080/bookmarkjobfindbyfree/"+JSON.parse(this.reqid!), this.httpOptions).subscribe(res=>{
 this.allbookmarkjobbyfree=res
   })
 }
 
+bookmarkjob(data:any){
+this.bookmarkedJob.freelancerId=JSON.parse(this.reqid!)
+this.bookmarkedJob.jobId=data.id
+
+this._http.post<any>("http://localhost:8080/bookmarkedjobadd", this.bookmarkedJob, this.httpOptions).subscribe(res=>{
+  alert("Bookmarked Successsfully")
+
+  this.getallbookmarkedjob()
+})
+
+}
+
+
+
 getallappliedjobsbyfree(){
   this._http.get<any>("http://localhost:8080/jobappfindbyfree/"+JSON.parse(this.reqid!), this.httpOptions).subscribe(res=>{
+    
 this.allappliedjobbyfree=res
   })
 
-  
 }
 
 
 
 Apply(data:any){
   this.jobApplication.coverLetter=" "
-  this.jobApplication.freelancerId=JSON.parse(this.reqid!)
-  this.jobApplication.jobId=data.id
+  this.jobApplication.freelancerid=JSON.parse(this.reqid!)
+  this.jobApplication.jobid=data.id
 
   this._http.post<any>("http://localhost:8080/jobappsave", this.jobApplication, this.httpOptions).subscribe(res=>{
     alert("job applied successfully")
-    this.allappliedjobbyfree()
+    this.getallappliedjobsbyfree()
 
   })
 

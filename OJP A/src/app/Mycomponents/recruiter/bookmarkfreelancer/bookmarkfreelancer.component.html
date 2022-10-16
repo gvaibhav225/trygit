@@ -49,10 +49,10 @@
                                 <td>{{data.id}}</td>
                                 <td>{{data.firstName}}</td>
                                 <td>{{data.lastName}}</td>
-                                <td>{{data.skillsexp}}</td>
+                                <td>{{data.skillsexp.years}}</td>
 
                                 
-                                <td> <button class="btn btn-primary"  (click)="bookmark(data)" > Bookmark </button> </td>
+                                <td> <button class="btn btn-primary"  id="{{data.id}}"  (click)="bookmark(data)" > Bookmark </button> </td>
                             </tr>
                             
                         </tbody>

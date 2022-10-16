@@ -90,7 +90,7 @@ public class IBookmarkFreelancerServiceImpl implements IBookmarkFreelancerServic
 	@Override
 	public List<BookmarkedFreelancer> findByrecId(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return bookmarkFreeRepo.findbyrecid(id);
 	}
 
 	

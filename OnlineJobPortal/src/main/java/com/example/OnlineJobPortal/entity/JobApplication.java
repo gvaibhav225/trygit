@@ -21,7 +21,7 @@ public class JobApplication {
 	@Column(name="jobapp_id")
 	private int id;
 	
-	@ManyToOne(targetEntity=Freelancer.class,cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToOne(targetEntity=Job.class,cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name="job_id")
 	@JsonBackReference
 	private Job job;

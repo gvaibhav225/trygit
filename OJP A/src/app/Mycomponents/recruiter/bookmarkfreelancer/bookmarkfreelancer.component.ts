@@ -13,6 +13,7 @@ export class BookmarkfreelancerComponent implements OnInit {
   allfreelist:any
   allbookfreelist:any
   done!:boolean[]
+   
   
   constructor( private _http:HttpClient) { }
 
@@ -43,6 +44,7 @@ export class BookmarkfreelancerComponent implements OnInit {
   reqid =  localStorage.getItem('recruiterid')
 
 
+
   bookmark(data:any){
 
     this.bookmarkfreelancer.freelanceId=data.id
@@ -52,7 +54,9 @@ export class BookmarkfreelancerComponent implements OnInit {
     this._http.post<any>("http://localhost:8080/bookmarkedFreelancersave", this.bookmarkfreelancer , this.httpOptions).subscribe(res=>{
       alert("bookmarked")
 
-     
+    //  const button=document.getElementById("data.id") as HTMLElement
+    //  button?.setAttribute("disabled", "true")
+
  
       this.getallbookmarkfree()
     })
@@ -68,8 +72,5 @@ this.getallbookmarkfree();
 
   }
 
-}
-function done(id: any) {
-  throw new Error('Function not implemented.');
 }
 
