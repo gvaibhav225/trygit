@@ -13,6 +13,7 @@ export class SkillexpComponent implements OnInit {
   allskillexbyfree:any
   formValue!:FormGroup
   formValue1!:FormGroup
+  reqq:any
   constructor(private _http:HttpClient, private formbuilder:FormBuilder) { }
   skillExperience: SkillExperience=new SkillExperience
   ngOnInit(): void {
@@ -61,12 +62,18 @@ getskillexbyfree(){
   })
 }
 
+value(data:any){
+this.reqq=data.id
+}
+
 update(){
 this.skillExperience.years=this.formValue1.value.years1
 
-// this._http.put<any>("http://localhost:8080/skillexupdate/"+data.id, this.skillExperience, this.httpOptions).subscribe(res=>{
-
-// })
+this._http.put<any>("http://localhost:8080/skillexupdate/"+ this.reqq, this.skillExperience, this.httpOptions).subscribe(res=>{
+alert("updated successfully")
+this.getskillexbyfree()
+this.formValue1.reset()
+})
 
 }
 
